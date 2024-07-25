@@ -30,5 +30,6 @@ La granularité des tâches proposées à l'utilisateur pour cette phase est, co
 
 ## Aperçu de l'inteface
 
+![phase2](https://github.com/user-attachments/assets/6c29be10-ad2f-4cc5-bb72-eaa84d81cfb9)
 
-  - 
+
