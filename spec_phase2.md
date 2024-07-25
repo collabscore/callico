@@ -28,12 +28,16 @@ la non-reconnaissance d'un symbole de contexte (par exemple une clé non reconnu
 
 La granularité des tâches proposées à l'utilisateur pour cette phase est, comme pour la phase 1, *la partition complète* (contrairement à ce qui avait été envisagé initialement). On peut parier, sur la base des premières expériences, que le nombre d'erreur sera très limité et les corrections très rapides.
 
-## Aperçu de l'inteface
+## Aperçu de l'interface
 
-Le projet d'interface est illustré ci-dessous. On affiche en vis-à-vis une page de la partition et la page correspondante du MEI
+Le projet d'interface est illustré ci-dessous. 
+
+### Affichage 
+
+On affiche en vis-à-vis une page de la partition et la page correspondante du MEI
 produite avec Verovio.
 
-Tous les éléments de contexte sont surlignés : clés, armures et métriques. On s'appuie pour cela sur les boites englobantes des symboles fournies par l'OMR, et sur le surlignage du SVG Verovio. Chaque élément de contexte est identifié de manière unique et cohérente, aussi bien sur l'image quand dans le MEI. On peut donc passer d'une représentation à l'autre et vice-versa.
+Tous les éléments de contexte sont surlignés : clés, armures et métriques. On s'appuie pour cela sur les boîtes englobantes des symboles, fournies par l'OMR, ansi que sur le surlignage du SVG Verovio. Chaque élément de contexte est identifié de manière unique et cohérente, aussi bien sur l'image quand dans le MEI. On peut donc passer d'une représentation à l'autre et vice-versa.
 
 > [!IMPORTANT]  
 > L'OMR remonte un degré de confiance sur l'interprétation des symboles. On pourrait envisager de ne surligner que ceux dont
@@ -46,4 +50,20 @@ L'affichage avec toutes ces informations ressemblera à ceci:
 
 ![phase2](https://github.com/user-attachments/assets/6c29be10-ad2f-4cc5-bb72-eaa84d81cfb9)
 
+Exemples d'actions utilisateur:
+
+ - on clique sur une clé dans l'affichage Verovio ; c'est une clé de fa alors que la source indique une clé de sol -> on sélectionne dans la fenêtre des clés, la clé de sol, et on obtient l'action de remplacement à stocker dans l'annotation.
+ - idem pour les armures et les métriques.
+
+### Les remplacements possibles
+
+On va limiter (au moins dans un premier temps) la liste des valeurs possibles pour chaque élément
+
+ - les clés: clé de sol 2ème ligne, clé de fa 4ème et 3ème ligne, clé d'ut 1èere, 2ème, 3ème et 4ème ligne
+ - les armures : de 0 à 7 dièses, de 0 à 7 bémols
+ - métriques: permettre la saisie d'une fraction d'entiers, plus un indicateur "lettre" (un 4/4 peut s'affiche en C, un 2/2 en C barré)
+
+# Codages des annotations
+
+Chaque opération d'édition doit être codée en JSON avec les paramètres nécessaires. Voir le document https://github.com/collabscore/callico/blob/main/editions.md pour la liste des éditions.
 
