@@ -65,15 +65,63 @@ On va limiter (au moins dans un premier temps) la liste des valeurs possibles po
 
 # Codages des annotations
 
-Chaque opération d'édition doit être codée en JSON avec les paramètres nécessaires. 
+Chaque opération d'édition doit être codée en JSON avec les paramètres nécessaires. Voir le document https://github.com/collabscore/callico/blob/main/editions.md pour la liste des éditions.
 
-## Représentation d'une clé
 
+## Codage d'une clé
+
+Exemple pour une clé de sol 2ème ligne.
 
 ```json
-   { "label": "G",
+   {
+     "label": "G",
      "line": 2
-  }
+   }
 ```
 
-Voir le document https://github.com/collabscore/callico/blob/main/editions.md pour la liste des éditions.
+# Codage d'une armure
+
+Exemple pour 2 dièses
+
+```json
+   {
+     "nb_sharps": 2
+   }
+```
+
+Exemple pour 3 bémols:
+
+```json
+   {
+     "nb_flats": 3
+   }
+```
+
+> [!NOTE]  
+> On aura soit ``nb_sharps``, soit ``nb_flats``, pas les deux en même temps.
+
+
+# Codage d'une métrique
+
+Exemple en 3/4:
+
+```json
+   {
+     "time": 3,
+      "unit": 4
+   }
+```
+
+Exemple en 2/2 avec affichage lettre (C barré)
+
+```json
+   {
+     "time": 2,
+      "unit": 2,
+      "type": "letter"
+   }
+```
+
+
+
+
