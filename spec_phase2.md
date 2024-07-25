@@ -59,11 +59,21 @@ Exemples d'actions utilisateur:
 
 On va limiter (au moins dans un premier temps) la liste des valeurs possibles pour chaque élément
 
- - les clés: clé de sol 2ème ligne, clé de fa 4ème et 3ème ligne, clé d'ut 1èere, 2ème, 3ème et 4ème ligne
+ - les clés: clé de sol 1ère ou 2ème ligne, clé de fa 4ème et 3ème ligne, clé d'ut 1ère, 2ème, 3ème et 4ème ligne
  - les armures : de 0 à 7 dièses, de 0 à 7 bémols
  - métriques: permettre la saisie d'une fraction d'entiers, plus un indicateur "lettre" (un 4/4 peut s'affiche en C, un 2/2 en C barré)
 
 # Codages des annotations
 
-Chaque opération d'édition doit être codée en JSON avec les paramètres nécessaires. Voir le document https://github.com/collabscore/callico/blob/main/editions.md pour la liste des éditions.
+Chaque opération d'édition doit être codée en JSON avec les paramètres nécessaires. 
 
+## Représentation d'une clé
+
+
+```json
+   { "label": "G",
+     "line": 2
+  }
+```
+
+Voir le document https://github.com/collabscore/callico/blob/main/editions.md pour la liste des éditions.
