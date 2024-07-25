@@ -30,6 +30,20 @@ La granularité des tâches proposées à l'utilisateur pour cette phase est, co
 
 ## Aperçu de l'inteface
 
+Le projet d'interface est illustré ci-dessous. On affiche en vis-à-vis une page de la partition et la page correspondante du MEI
+produite avec Verovio.
+
+Tous les éléments de contexte sont surlignés : clés, armures et métriques. On s'appuie pour cela sur les boites englobantes des symboles fournies par l'OMR, et sur le surlignage du SVG Verovio. Chaque élément de contexte est identifié de manière unique et cohérente, aussi bien sur l'image quand dans le MEI. On peut donc passer d'une représentation à l'autre et vice-versa.
+
+> [!IMPORTANT]  
+> L'OMR remonte un degré de confiance sur l'interprétation des symboles. On pourrait envisager de ne surligner que ceux dont
+> le niveau de confiance est insuffisant. À voir avoir le partenaire IRISA. 
+
+L'interface doit permettre de saisir une action d'édition (voir ci-dessus) sur un symbole incorrect. On ne peut pas remplacer 
+un symbole par n'importe quoi, donc on propose une liste de choix restreints pour remplacer, respectivement, une clé, une armure ou une métriue.
+
+L'affichage avec toutes ces informations ressemblera à ceci:
+
 ![phase2](https://github.com/user-attachments/assets/6c29be10-ad2f-4cc5-bb72-eaa84d81cfb9)
 
 
