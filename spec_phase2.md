@@ -79,7 +79,7 @@ Exemple pour une clé de sol 2ème ligne.
    }
 ```
 
-# Codage d'une armure
+## Codage d'une armure
 
 Exemple pour 2 dièses
 
@@ -100,8 +100,7 @@ Exemple pour 3 bémols:
 > [!NOTE]  
 > On aura soit ``nb_sharps``, soit ``nb_flats``, pas les deux en même temps.
 
-
-# Codage d'une métrique
+## Codage d'une métrique
 
 Exemple en 3/4:
 
