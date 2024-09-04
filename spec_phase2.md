@@ -10,6 +10,14 @@ reconnu par l'OMR. Ces éléments sont
 Ces éléments sont représentés par des symboles affectant une portée spécifique. De plus, les armures et la métrique ne peuvent apparaître qu'en 
 début de mesure. En revanche on peut changer de clé n'importe quand, voire plusieurs fois par mesure.
 
+## Les données
+
+Connaissant la reférence d'un opus (par exemple all:collabscore:saintsaens-ref:C006_0), obtient la liste des clés, armures et métriques sous la forme d'annotations liant l'identifiant de l'objet dans le MEI et la région sur l'image. Le modèle d'annotation est ``image-region``, et le concept d'annotation est ``symbol-region``.
+
+Voici un exemple de l'URL d'appel pour l'opus all:collabscore:saintsaens-ref:C006_0.
+
+https://neuma.huma-num.fr/rest/collections/all:collabscore:saintsaens-ref:C006_0/_annotations/image-region/symbol-region/
+
 ## Principe de l'interface
 
 On va s'interdire d'ajouter ou de supprimer un symbole. Le but en effet est de corriger (si besoin) le résultat de l'OMR, mais pas
