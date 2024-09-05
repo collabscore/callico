@@ -67,7 +67,7 @@ Exemples d'actions utilisateur:
 
 On va limiter (au moins dans un premier temps) la liste des valeurs possibles pour chaque élément
 
- - les clés: clé de sol 1ère ou 2ème ligne, clé de fa 4ème et 3ème ligne, clé d'ut 1ère, 2ème, 3ème et 4ème ligne
+ - les clés: clé de fa 4ème et 3ème ligne, clé d'ut 4ème, 3ème, 2ème, 1ère ligne clé de sol 1ère ou 2ème ligne - si possible ajouter clé de sol octaviées (haut et bas)
  - les armures : de 0 à 7 dièses, de 0 à 7 bémols
  - métriques: permettre la saisie d'une fraction d'entiers, plus un indicateur "lettre" (un 4/4 peut s'affiche en C, un 2/2 en C barré)
 
