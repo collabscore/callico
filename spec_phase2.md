@@ -68,13 +68,13 @@ Exemples d'actions utilisateur:
 On va limiter (au moins dans un premier temps) la liste des valeurs possibles pour chaque élément
 
  - les clés:
-     - clé de fa 4ème  En MEI:   <clef shape="F" line="4" />
-     - clé de fa 3ème ligne: <clef shape="F" line="3" />
-     - clé d'ut 4ème: <clef shape="C" line="4" />
-     - clé d'ut 3ème: <clef shape="C" line="3" />
-     - clé d'ut 2ème: <clef shape="C" line="2" />
-     - clé d'ut 1ère ligne:  <clef shape="C" line="1" />
-     - clé de sol 2ème ligne. En MEI:   <clef shape="G" line="2" />
+     - clé de fa 4ème  En MEI:   clef shape="F" line="4" 
+     - clé de fa 3ème ligne:  clef shape="F" line="3" 
+     - clé d'ut 4ème: clef shape="C" line="4" 
+     - clé d'ut 3ème: clef shape="C" line="3" 
+     - clé d'ut 2ème: clef shape="C" line="2" 
+     - clé d'ut 1ère ligne:  clef shape="C" line="1" 
+     - clé de sol 2ème ligne. En MEI:   clef shape="G" line="2" 
      - clés de sol octaviées (haut et bas)
  - les armures : de 0 à 7 dièses, de 0 à 7 bémols
  - métriques: permettre la saisie d'une fraction d'entiers, plus un indicateur "lettre" (un 4/4 peut s'affiche en C, un 2/2 en C barré)
