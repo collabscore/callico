@@ -92,9 +92,9 @@ On va limiter (au moins dans un premier temps) la liste des valeurs possibles po
 
  - les armures : de 0 à 7 dièses, de 0 à 7 bémols.
    - Codage des armures en MEI:
-       ```xml
+     ```xml
                <keySig xml:id="k10l74wn" sig="2f"/>
-       ``` En MEI:
+     ``` 
      Quand il y a X bémols, c'est un attribut sig="Xf", par exemple  sig="2f"
      pour deux bémols. Quand il y a X dièses, même chose avec sig="Xs",
      par exemple  sig="2s" pour deux dièses
