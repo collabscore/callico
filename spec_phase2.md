@@ -76,7 +76,10 @@ On va limiter (au moins dans un premier temps) la liste des valeurs possibles po
      - clé d'ut 1ère ligne:  clef shape="C" line="1" 
      - clé de sol 2ème ligne. En MEI:   clef shape="G" line="2" 
      - clés de sol octaviées (haut et bas) : ... je cherche ...
-       
+
+      - Codage des clés en MEI:
+         <clef shape="F" line="4"/>
+         
  - les armures : de 0 à 7 dièses, de 0 à 7 bémols. En MEI:
     -  Quand il y a X bémols, c'est un élément keySig xml:id="ks_1323_1721" sig="Xf", par exemple  sig="2f" pour deux bémols
     -  Quand il y a X dièses, même chose avec sig="Xs", par exemple  sig="2s" pour deux dièses
