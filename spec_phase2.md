@@ -78,7 +78,7 @@ On va limiter (au moins dans un premier temps) la liste des valeurs possibles po
      - clés de sol octaviées (haut et bas) : ... je cherche ...
 
       - Codage des clés en MEI:
-         <clef shape="F" line="4"/>
+                <clef shape="F" line="4"/>
          
  - les armures : de 0 à 7 dièses, de 0 à 7 bémols. En MEI:
     -  Quand il y a X bémols, c'est un élément keySig xml:id="ks_1323_1721" sig="Xf", par exemple  sig="2f" pour deux bémols
