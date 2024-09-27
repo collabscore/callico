@@ -90,9 +90,15 @@ On va limiter (au moins dans un premier temps) la liste des valeurs possibles po
      - clés de sol octaviées (haut et bas) : ... je cherche ...
 
 
- - les armures : de 0 à 7 dièses, de 0 à 7 bémols. En MEI:
-    -  Quand il y a X bémols, c'est un élément keySig xml:id="ks_1323_1721" sig="Xf", par exemple  sig="2f" pour deux bémols
-    -  Quand il y a X dièses, même chose avec sig="Xs", par exemple  sig="2s" pour deux dièses
+ - les armures : de 0 à 7 dièses, de 0 à 7 bémols.
+   - Codage des armures en MEI:
+       ```xml
+               <keySig xml:id="k10l74wn" sig="2f"/>
+       ``` En MEI:
+     Quand il y a X bémols, c'est un attribut sig="Xf", par exemple  sig="2f"
+     pour deux bémols. Quand il y a X dièses, même chose avec sig="Xs",
+     par exemple  sig="2s" pour deux dièses
+       
  - métriques: permettre la saisie d'une fraction d'entiers, plus un indicateur "lettre" (un 4/4 peut s'affiche en C, un 2/2 en C barré)
 
 # Codages des annotations
