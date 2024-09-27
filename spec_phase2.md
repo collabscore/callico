@@ -68,6 +68,18 @@ Exemples d'actions utilisateur:
 On va limiter (au moins dans un premier temps) la liste des valeurs possibles pour chaque élément
 
  - les clés:
+     - Codage des clés en MEI:
+       ```xml
+                <clef shape="F" line="4"/>
+       ```
+       Shape peut être "F" pour clé de Fa, "C" pour clé d'ut, et "G" pour sol
+     - Codage des clés en MusicXML. Même chose mais avec des éléments
+       ```xml
+                <clef id="clef_1223_1710">
+                   <sign>G</sign>
+                   <line>2</line>
+                 </clef>
+        ```
      - clé de fa 4ème  En MEI:   clef shape="F" line="4" 
      - clé de fa 3ème ligne:  clef shape="F" line="3" 
      - clé d'ut 4ème: clef shape="C" line="4" 
@@ -77,10 +89,7 @@ On va limiter (au moins dans un premier temps) la liste des valeurs possibles po
      - clé de sol 2ème ligne. En MEI:   clef shape="G" line="2" 
      - clés de sol octaviées (haut et bas) : ... je cherche ...
 
-      - Codage des clés en MEI:
-        ```xml
-                <clef shape="F" line="4"/>
-        ```
+
  - les armures : de 0 à 7 dièses, de 0 à 7 bémols. En MEI:
     -  Quand il y a X bémols, c'est un élément keySig xml:id="ks_1323_1721" sig="Xf", par exemple  sig="2f" pour deux bémols
     -  Quand il y a X dièses, même chose avec sig="Xs", par exemple  sig="2s" pour deux dièses
