@@ -98,7 +98,14 @@ On va limiter (au moins dans un premier temps) la liste des valeurs possibles po
      Quand il y a X bémols, c'est un attribut sig="Xf", par exemple  sig="2f"
      pour deux bémols. Quand il y a X dièses, même chose avec sig="Xs",
      par exemple  sig="2s" pour deux dièses
-       
+   - Codage des armures en MusicXML: oin indique un élément ``fifths``
+     qui vaut de -7 à 7. Les négatifs sont pour les bémols, les positifs
+     pour les dièses. Exemple pour deux bémols:
+     ```xml
+              <key id="ks_1323_1721">
+                <fifths>-2</fifths>
+              </key>
+     ```        
  - métriques: permettre la saisie d'une fraction d'entiers, plus un indicateur "lettre" (un 4/4 peut s'affiche en C, un 2/2 en C barré)
 
 # Codages des annotations
