@@ -227,3 +227,54 @@ Example: the edition specified below merges parts ``p1``  and
 		}
 }
 ```
+
+
+###  Replace a clef
+
+A clef identified by its id can be replaced. Example:
+
+```json
+{
+	"name": "replace_clef",
+         "params": {
+		"id": "clef_1029_209",
+		"values":  {
+    			 "label": "G",
+     			"line": 2
+   			}
+	}
+ }
+```
+
+###  Replace a key signature
+
+A key signature identified by its id can be replaced. Example:
+
+```json
+{
+	"name": "replace_keysign",
+         "params": {
+		"id": "ks_1929_1092",
+		"values":  {
+    			  "nb_sharps": 2
+   			}
+	}
+ }
+```
+
+###  Replace a time signature
+
+A time signature identified by its id can be replaced. Example:
+
+```json
+{
+	"name": "replace_timesign",
+         "params": {
+		"id": "ks_1929_1092",
+		"values": {
+		     "time": 3,
+      			"unit": 4
+   		}
+	}
+ }
+```
