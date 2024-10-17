@@ -150,6 +150,22 @@ The services returns an array of editions:
 ]
 ```
 
+
+### Applying editions
+
+The ``apply_editions`` services allows to apply a list of
+editions to an IIIF source. It returns the MusicXML document
+resulting from the IIIF parsing completed with editions.
+
+The editions must be sent as a JSON array.
+
+```
+curl -u login:password -X GET
+http://neuma.huma-num.fr/rest/collections/22468/_sources/iiif/_apppy_editions/
+-d @editions.json  -H "Content-Type: application/json"
+```
+
+
 ### Replacing editions
 
 Editions are replaced by sending a ``PUT`` request.
