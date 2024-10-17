@@ -108,13 +108,17 @@ The Opus ref can be replaced by its database id, e.g.,
 
 See the document on sources for explanations. We use this URL for illustrating the services below. Editions can only be accessed by authorized users. The credentials must be given with each call.
 
+Editions are always exchanges as a list. In order to *add* an edition
+to an existing list, you must first GET the current edition list, 
+append the JSON objet(s) and finally PUT the extended list.
+
 ### Retrieving editions
 
 The list of editions for a source can be obtained with a GET
 
 ```
 curl -u login:password -X GET
-http://neuma.huma-num.fr/rest/collections/22468/_sources/iiif/_editions
+http://neuma.huma-num.fr/rest/collections/22468/_sources/iiif/_editions/
 ```
 
 The services returns an array of editions:
@@ -146,42 +150,17 @@ The services returns an array of editions:
 ]
 ```
 
-### Retrieving a specific edition
+### Replacing editions
 
-A specific edition can be obtained by giving its index in the array
-of editions (starting at 0). For instance the second edition
-is obtained with:
+Editions are replaced by sending a ``PUT`` request.
 
 ```
-http://neuma.huma-num.fr/rest/collections/22468/_sources/iiif/_editions/1
-```
-
-### Adding an edition
-
-Adding an edition is a POST sent to the source URL. The message body
-is the JSON representation of the edition. The new edition is appended 
-to the list of editions of the source.
-
-### Updating an edition
-
-An edition can be updated by sending a POST request to its index in
-the list of editions. For instance:
-
-```
-http://neuma.huma-num.fr/rest/collections/22468/_sources/iiif/_editions/1
-```
-
-### Clearing editions
-
-Editions can be cleared with a DELETE request:
-
-```
-curl -u login:password -X DELETE
-http://neuma.huma-num.fr/rest/collections/22468/_sources/iiif/_editions
+curl -u login:password -X PUT
+http://neuma.huma-num.fr/rest/collections/22468/_sources/iiif/_editions/
+-d @new_editions.json  -H "Content-Type: application/json"
 ```
 
 ## List of editions
-
 
 ### Describe parts
 
