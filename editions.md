@@ -228,6 +228,19 @@ Example: the edition specified below merges parts ``p1``  and
 }
 ```
 
+### Remove an object
+
+The removed element will be ignored during the production of the MusicXML file. Its type
+is not specified (clef, signature, note...)
+
+```json
+{
+	"name": "remove_object",
+         "params": {
+		"id": "my_id"
+	}
+ }
+```
 
 ###  Replace a clef
 
@@ -245,6 +258,12 @@ A clef identified by its id can be replaced. Example:
 	}
  }
 ```
+
+Accepted values for ``label`` are "G", "F", "C".
+Accepted values from ``line``  are 
+  - 2 (if label is G),
+  - 4 or 3 (if label if F)
+  - 1, 2, 3, 4 (if label if C)
 
 ###  Replace a key signature
 
