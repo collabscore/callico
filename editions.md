@@ -161,7 +161,7 @@ The editions must be sent as a JSON array.
 
 ```
 curl -u login:password -X GET
-http://neuma.huma-num.fr/rest/collections/22468/_sources/iiif/_apppy_editions/
+http://neuma.huma-num.fr/rest/collections/22468/_sources/iiif/_apply_editions/
 -d @editions.json  -H "Content-Type: application/json"
 ```
 
