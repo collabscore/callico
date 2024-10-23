@@ -96,50 +96,32 @@ alors la durée de toutes les autres doit être modifiée également.
  - on clique sur une note dans l'affichage Verovio ; c'est une noire alors que l'image montre que la réalité est une croche; le formulaire permet de corriger la durée
  -  ou bien: c'est un la 4,  alors que l'image montre que la réalité est do4 ; le formulaire permet de corriger la hauteur de la note
 
-### Les remplacements possibles
+## Le codage des remplacements.
 
-On va limiter (au moins dans un premier temps) la liste des valeurs possibles pour chaque élément
+### Pour les durées
 
- - les clés:
-     - Codage des clés en MEI:
-       ```xml
-                <clef shape="F" line="4"/>
-       ```
-       Shape peut être "F" pour clé de Fa, "C" pour clé d'ut, et "G" pour sol
-     - Codage des clés en MusicXML. Même chose mais avec des éléments
-       ```xml
-                <clef id="clef_1223_1710">
-                   <sign>G</sign>
-                   <line>2</line>
-                 </clef>
-        ```
-     - clé de fa 4ème  En MEI:   clef shape="F" line="4" 
-     - clé de fa 3ème ligne:  clef shape="F" line="3" 
-     - clé d'ut 4ème: clef shape="C" line="4" 
-     - clé d'ut 3ème: clef shape="C" line="3" 
-     - clé d'ut 2ème: clef shape="C" line="2" 
-     - clé d'ut 1ère ligne:  clef shape="C" line="1" 
-     - clé de sol 2ème ligne. En MEI:   clef shape="G" line="2" 
-     - clés de sol octaviées (haut et bas) : ... je cherche ...
+On va utiliser les codes suivants:
 
+ - whole = ronde
+ - half = blanche
+ - quarter = noire
+ - eighth = croche
+ - 16th = double croche
+ - 32th = triple croche
 
- - les armures : de 0 à 7 dièses, de 0 à 7 bémols.
-   - Codage des armures en MEI:
-     ```xml
-               <keySig xml:id="k10l74wn" sig="2f"/>
-     ``` 
-     Quand il y a X bémols, c'est un attribut sig="Xf", par exemple  sig="2f"
-     pour deux bémols. Quand il y a X dièses, même chose avec sig="Xs",
-     par exemple  sig="2s" pour deux dièses
-   - Codage des armures en MusicXML: oin indique un élément ``fifths``
-     qui vaut de -7 à 7. Les négatifs sont pour les bémols, les positifs
-     pour les dièses. Exemple pour deux bémols:
-     ```xml
-              <key id="ks_1323_1721">
-                <fifths>-2</fifths>
-              </key>
-     ```        
- - métriques: permettre la saisie d'une fraction d'entiers, plus un indicateur "lettre" (un 4/4 peut s'affiche en C, un 2/2 en C barré)
+Et ainsi de suite. Cela correspond aux codes MusicXML.
+
+### Pour les altérations 
+
+On va indiquer le nombre de demi-tons ascendants (dièses) ou descendants (bémol). Exemples:
+
+  - 1 indique un dièse
+  -  -1 indique un bémol
+  -  -2 indique deux bémols
+Etc.
+
+### Pour la hauteur 
+
 
 # Codages des annotations
 
