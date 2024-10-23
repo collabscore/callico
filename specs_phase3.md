@@ -122,18 +122,53 @@ Etc.
 
 ### Pour la hauteur 
 
+En supposant que l'utiliisateur indique l'intervalle de transposition (soit, +1, +3, -4, etc). Il faudrait
+être capable de déterminer le nouveau codage du pitch, qui est constitué de deux valeurs: le
+*pitch name* (A, B, C, D, E, F, G) et l'octave (voir https://en.wikipedia.org/wiki/Scientific_pitch_notation 
+par exemple).
+
+Exemple:
+  - À partir d'un A4, avec une transposition de +1, on obtient B4
+  - À partir d'un A4, avec une transposition de -1, on obtient G3
+
+En résumé, c'est une séquence qui va de C0 à C9. Quand on arrive sur un Gn, on passe au An+1 (la
+note qui suit G3 est A4). 
+
+On doit pouvoir coder une fonction javascript qui fait ça.
+
 
 # Codages des annotations
 
-Chaque opération d'édition doit être codée en JSON avec les paramètres nécessaires. Voir le document https://github.com/collabscore/callico/blob/main/editions.md pour la liste des éditions.
+Chaque opération d'édition doit être codée en JSON avec les paramètres nécessaires. Voir le document https://github.com/collabscore/callico/blob/main/editions.md pour la liste des éditions. Dans 
+à peu près tous
+les cas (sauf les triolets) on indique un identifiant d'objet et les propriétés à modifier.
 
-## Codage des propriétés d'une note
+Quelques exemples de codage:
 
-Exemple pour une clé de sol 2ème ligne.
+Changement de la durée. 
 
 ```json
    {
-     "label": "G",
-     "line": 2
+     "duration": "16th"
    }
 ```
+
+Changement de la hauteur. 
+
+```json
+   {
+     "pitch": "D6"
+   }
+```
+
+
+Changement de la durée, de la hauteur et ajout d'un dièse
+
+```json
+   {
+     "pitch": "D6",
+     "duration": "16th",
+      "alter": 1
+   }
+```
+
