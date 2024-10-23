@@ -143,7 +143,7 @@ Exemple pour 3 bémols:
 ```
 
 > [!NOTE]  
-> On aura soit ``nb_sharps``, soit ``nb_flats``, pas les deux en même temps.
+> On aura soit ``nb_sharps`` soit ``nb_flats``, mais pas les deux en même temps.
 
 ## Codage d'une métrique
 
