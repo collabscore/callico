@@ -275,7 +275,8 @@ A key signature identified by its id can be replaced. Example:
          "params": {
 		"id": "ks_1929_1092",
 		"values":  {
-    			  "nb_sharps": 2
+    			  "nb_sharps": 2,
+				"nb_flats": 0
    			}
 	}
  }
