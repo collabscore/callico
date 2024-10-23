@@ -165,7 +165,7 @@ Exemple en 2/2 avec affichage lettre (C barré)
       "type": "letter"
    }
 ```
-
+L'attribut ``type`` peut valoir ``letter`` ou ``singleDigit``.
 
 
 
