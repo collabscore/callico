@@ -63,17 +63,35 @@ par défaut celles issues de l'OMR.
 
 ### Formulaire pour les silences
 
-C'est le plus simple: on ne peut modifier que la durée.
+C'est le plus simple: on ne peut modifier que la durée. La figure ci-dessous montre l'interface de
+MuseScore: on peut sélectionner des durées allant de la quadruple croche à la ronde. 
 
+On peut aussi indiquer qu'un groupe de notes est un triolet (ou un n-olet en général). Pour cela
+on pointe le premier objet du groupe et on choisit dans un menu déroulant le type de groupement.
 
-![form-musescore](https://github.com/user-attachments/assets/2c04da9a-0386-4069-9eba-5bc70cf83541)
+![form-musescore](https://github.com/user-attachments/assets/f28f4fb3-e92e-40e2-bdef-00c2b9f8ebea)
 
 ### Formulaire pour les notes
 
 On peut modifier les propriétés suivantes:
 
-  - la durée 
-Exemples d'actions utilisateur:
+  - la durée
+  - la hauteur
+  - l'altération
+
+Pour changer la hauteur, idéalement, on bouge la note de haut en bas sur le verovio... Sans doute difficile.
+On peut aussi indiquer l'intervalle de transposition: une tierce au-dessus, une seconde en dessous.... Il 
+faudrait refléter le changement immédiatement dans l'affichage.
+
+Pour changer l'altération on peut choisir dans un menu déroulant: voir ci-dessus.
+
+
+### Formulaire pour les accords
+
+On peut modifier chaque note de l'accord. *Mais, attention**: si on modifie la durée d'une des notes,
+alors la durée de toutes les autres doit être modifiée également.
+
+### Exemples d'actions utilisateur:
 
  - on clique sur une note dans l'affichage Verovio ; c'est une noire alors que l'image montre que la réalité est une croche; le formulaire permet de corriger la durée
  -  ou bien: c'est un la 4,  alors que l'image montre que la réalité est do4 ; le formulaire permet de corriger la hauteur de la note
