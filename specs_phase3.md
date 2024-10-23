@@ -4,8 +4,8 @@ L'interface pour la phase 3 doit permettre de contrôler et si nécessaire de co
 objets musicaux, définis comme *tout objet ayant une durée*. Cela couvre:
 
  - les **notes** : on les sélectionne par la tête de note
- - les **accords** : on sélection une des têtes de note de l'accord
- - les **silences**  : indique la division en temps d'une mesure
+ - les **accords** : on sélectionne une des têtes de note de l'accord
+ - les **silences**  : on sélectionne le symbole du silence
 
 On ne peut que corriger un élément existant en modifiant certaines de ses propriétés (durée, hauteur, etc.)
 ou supprimer un élément existant. On ne peut pas ajouter d'élément.
@@ -21,50 +21,62 @@ Voici un exemple de l'URL d'appel pour l'opus all:collabscore:saintsaens-ref:C00
 
 https://neuma.huma-num.fr/rest/collections/all:collabscore:saintsaens-ref:C006_0/_annotations/image-region/note-region/
 
+
+## Obtenir les annotations indiquant une demande de correction sur un objet musical 
+
+Le système OMR remonte des demandes de corrections sur des objets quand le niveau
+de certitude est en dessous d'un seuil. Ces demandes peuvent également être obtenus sous
+forme d'annotations avec le modèle d'annotation ``omr-error``. La requête REST est 
+donc dans ce cas:
+
+https://neuma.huma-num.fr/rest/collections/all:collabscore:saintsaens-ref:C006_0/_annotations/omr-error/_all/
+
 ## Principe de l'interface
 
-On va s'interdire d'ajouter ou de supprimer un symbole. Le but en effet est de corriger (si besoin) le résultat de l'OMR, mais pas
-de se substituer à lui en développant des fonctionnalités d'édition de partition. 
+L'interface doit permettre de collecter un ensemble d'éditions qui seront appliquées au résultat de l'OMR. Ces éditions sont de plusieurs types:
 
-L'interface doit permette de collection un ensemble d'éditions qui seront appliquées au résultat de l'OMR. Ces éditions sont de plusieurs
-types:
+  -  edition d'une note
+  - édition d'un silence
+  - suppression d'un objet
 
-  - remplacement d'une clé
-  - remplacement d'une armure
-  - remplacement d'une métrique
-  - indication d'une erreur d'interprétation: un symbole a été considéré à tort comme étant un élément de contexte.
+Par application des éditions au résultat "brut" de l'OMR avec le service ``apply_editions``, 
+on obtient une partition corrigée des erreurs de l'OMR.
 
-Par application des éditions au résultat "brut" de l'OMR, on obtient une partition corrigée des erreurs de l'OMR, à l'exception de
-la non-reconnaissance d'un symbole de contexte (par exemple une clé non reconnue ou confondues avec une tête de note ou signe de reprise). On mesurera ces erreurs résiduelles comme indicateur de qualité de l'ensemble du processus CollabScore.
+La granularité des tâches proposées à l'utilisateur pour cette phase est, comme pour la phase 1, *la partition complète* (contrairement à ce qui avait été envisagé initialement). On peut parier, sur la base des premières expériences, que le nombre d'erreurs sera très limité et les corrections très rapides.
 
-La granularité des tâches proposées à l'utilisateur pour cette phase est, comme pour la phase 1, *la partition complète* (contrairement à ce qui avait été envisagé initialement). On peut parier, sur la base des premières expériences, que le nombre d'erreur sera très limité et les corrections très rapides.
+## L'interface
 
-## Aperçu de l'interface
-
-Le projet d'interface est illustré ci-dessous. 
-
-### Affichage 
-
-On affiche en vis-à-vis une page de la partition et la page correspondante du MEI
+L'interface est identique à celle de la phase 2. On affiche en vis-à-vis une page de la partition et la page correspondante 
 produite avec Verovio.
 
-Tous les éléments de contexte sont surlignés : clés, armures et métriques. On s'appuie pour cela sur les boîtes englobantes des symboles, fournies par l'OMR, ansi que sur le surlignage du SVG Verovio. Chaque élément de contexte est identifié de manière unique et cohérente, aussi bien sur l'image quand dans le MEI. On peut donc passer d'une représentation à l'autre et vice-versa.
+Ce qui change, c'est le type
+des objets que l'on peut modifier: uniquement les notes, silences et accords. 
+Tous ces objets sont identifiés de manière unique dans le XML, et dans le SVG correspondant.
 
-> [!IMPORTANT]  
-> L'OMR remonte un degré de confiance sur l'interprétation des symboles. On pourrait envisager de ne surligner que ceux dont
-> le niveau de confiance est insuffisant. À voir avoir le partenaire IRISA. 
+On va surligner par défaut les objets pour lesquels une demande de correction a été 
+remontée de l'OMR. Mais on laissera l'utilisateur effectuer une modification sur tous les
+objets.
 
-L'interface doit permettre de saisir une action d'édition (voir ci-dessus) sur un symbole incorrect. On ne peut pas remplacer 
-un symbole par n'importe quoi, donc on propose une liste de choix restreints pour remplacer, respectivement, une clé, une armure ou une métriue.
+L'interface doit permettre de saisir une action d'édition sur un objet. Elle consiste à 
+proposer un formulaire avec un ensemble de propriétés, en proposant comme valeurs
+par défaut celles issues de l'OMR.
 
-L'affichage avec toutes ces informations ressemblera à ceci:
+### Formulaire pour les silences
 
-![phase2](https://github.com/user-attachments/assets/6c29be10-ad2f-4cc5-bb72-eaa84d81cfb9)
+C'est le plus simple: on ne peut modifier que la durée.
 
+
+![form-musescore](https://github.com/user-attachments/assets/2c04da9a-0386-4069-9eba-5bc70cf83541)
+
+### Formulaire pour les notes
+
+On peut modifier les propriétés suivantes:
+
+  - la durée 
 Exemples d'actions utilisateur:
 
- - on clique sur une clé dans l'affichage Verovio ; c'est une clé de fa alors que la source indique une clé de sol -> on sélectionne dans la fenêtre des clés, la clé de sol, et on obtient l'action de remplacement à stocker dans l'annotation.
- - idem pour les armures et les métriques.
+ - on clique sur une note dans l'affichage Verovio ; c'est une noire alors que l'image montre que la réalité est une croche; le formulaire permet de corriger la durée
+ -  ou bien: c'est un la 4,  alors que l'image montre que la réalité est do4 ; le formulaire permet de corriger la hauteur de la note
 
 ### Les remplacements possibles
 
