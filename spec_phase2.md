@@ -165,7 +165,13 @@ Exemple en 2/2 avec affichage lettre (C barré)
       "type": "letter"
    }
 ```
-L'attribut ``type`` peut valoir ``letter`` ou ``singleDigit``.
+
+Les contraintes suivantes s'appliquent:
+
+  - L'attribut ``type`` peut valoir ``letter`` ou ``singleDigit``.
+  - le ``unit`` peut valoir 1, 2, 4, 8 ou 16
+  - le ``time`` a une valeur quelconque, supérieure ou égale à 1
+
 
 
 
