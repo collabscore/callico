@@ -40,11 +40,9 @@ that takes as parameter the target part and the above attributes. Its JSON descr
 	"name": "describe_part",
 	"params": {
 		"id": "Part2",
-		"values": {
-                        "intrument": "Chant",
+                 "intrument": "Chant",
 			"name": "Ténor",
 			"abbreviation": "T."
-		}
 	}
 }
 ```
@@ -129,11 +127,9 @@ The services returns an array of editions:
 	"name": "describe_part",
 	"params": {
 		"id": "Part2",
-		"values": {
-                        "intrument": "Chant",
+                 "intrument": "Chant",
 			"name": "Ténor",
 			"abbreviation": "T."
-		}
 	}
 },
   {
