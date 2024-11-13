@@ -39,10 +39,10 @@ that takes as parameter the target part and the above attributes. Its JSON descr
 {
 	"name": "describe_part",
 	"params": {
-		"id": "Part2",
+		"part": "Part2",
                  "intrument": "Chant",
-			"name": "Ténor",
-			"abbreviation": "T."
+                 "name": "Ténor",
+                 "abbreviation": "T."
 	}
 }
 ```
@@ -126,20 +126,19 @@ The services returns an array of editions:
   {
 	"name": "describe_part",
 	"params": {
-		"id": "Part2",
+		"part": "Part2",
                  "intrument": "Chant",
-			"name": "Ténor",
-			"abbreviation": "T."
+                  "name": "Ténor",
+                  "abbreviation": "T."
 	}
 },
   {
 	"name": "describe_part",
 	"params": {
-		"id": "Part1",
-		"values": {
-                        "intrument": "Piano",
-			"name": "Piano",
-			"abbreviation": "P."
+		"part": "Part1",
+                 "intrument": "Piano",
+                 "name": "Piano",
+                 "abbreviation": "P."
 		}
 	}
    }
@@ -247,10 +246,8 @@ A clef identified by its id can be replaced. Example:
 	"name": "replace_clef",
          "params": {
 		"id": "clef_1029_209",
-		"values":  {
-    			 "label": "G",
-     			"line": 2
-   			}
+                 "label": "G",
+                 "line": 2
 	}
  }
 ```
@@ -270,10 +267,8 @@ A key signature identified by its id can be replaced. Example:
 	"name": "replace_keysign",
          "params": {
 		"id": "ks_1929_1092",
-		"values":  {
-    			  "nb_sharps": 2,
-				"nb_flats": 0
-   			}
+                 "nb_sharps": 2,
+                  "nb_flats": 0
 	}
  }
 ```
@@ -287,10 +282,8 @@ A time signature identified by its id can be replaced. Example:
 	"name": "replace_timesign",
          "params": {
 		"id": "ks_1929_1092",
-		"values": {
-		     "time": 3,
-      			"unit": 4
-   		}
+                "time": 3,
+                "unit": 4
 	}
  }
 ```
