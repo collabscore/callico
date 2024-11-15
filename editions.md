@@ -40,7 +40,7 @@ that takes as parameter the target part and the above attributes. Its JSON descr
 	"name": "describe_part",
         "target": "Part2",
 	"params": {
-                 "intrument": "Chant",
+                 "instrument": "Chant",
                  "name": "Ténor",
                  "abbreviation": "T."
 	}
@@ -127,7 +127,7 @@ The services returns an array of editions:
 	"name": "describe_part",
          "target": "Part2",
 	"params": {
-                 "intrument": "Chant",
+                 "instrument": "Chant",
                   "name": "Ténor",
                   "abbreviation": "T."
 	}
@@ -136,7 +136,7 @@ The services returns an array of editions:
 	"name": "describe_part",
          "target": "Part1",
 	"params": {
-                 "intrument": "Piano",
+                 "instrument": "Piano",
                  "name": "Piano",
                  "abbreviation": "P."
 		}
