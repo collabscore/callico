@@ -125,7 +125,7 @@ The services returns an array of editions:
 [
   {
 	"name": "describe_part",
-         "target"= "Part2",
+         "target": "Part2",
 	"params": {
                  "intrument": "Chant",
                   "name": "Ténor",
@@ -134,7 +134,7 @@ The services returns an array of editions:
 },
   {
 	"name": "describe_part",
-         "target"= "Part1",
+         "target": "Part1",
 	"params": {
                  "intrument": "Piano",
                  "name": "Piano",
@@ -192,7 +192,7 @@ is allocated to part ``P1``, from the second system of page 3.
 ```json
 {
 	"name": "assign_staff_to_part",
-         "target"= "Part1",
+         "target": "Part1",
 	"params": {
 		"staff_number": 1
 		},
@@ -217,7 +217,7 @@ Example: the edition specified below merges parts ``p1``  and
 ```json
 {
 	"name": "merge_parts",
-         "target"= "score",
+         "target": "score",
 	"params": {
 		"parts": ["p1", "p2"]
 		}
@@ -232,7 +232,7 @@ is not specified (clef, signature, note...)
 ```json
 {
 	"name": "remove_object",
-         "target"= "my_id",
+         "target": "my_id",
          "params": {}
  }
 ```
@@ -244,7 +244,7 @@ A clef identified by its id can be replaced. Example:
 ```json
 {
 	"name": "replace_clef",
-        "target"= "clef_1029_209",
+        "target": "clef_1029_209",
          "params": {
                  "label": "G",
                  "line": 2
@@ -265,7 +265,7 @@ A key signature identified by its id can be replaced. Example:
 ```json
 {
 	"name": "replace_keysign",
-         "target"= "ks_1929_1092",
+         "target": "ks_1929_1092",
          "params": {
                  "nb_sharps": 2,
                   "nb_flats": 0
@@ -280,7 +280,7 @@ A time signature identified by its id can be replaced. Example:
 ```json
 {
 	"name": "replace_timesign",
-         "target"= "ts_1929_1092",
+         "target": "ts_1929_1092",
          "params": {
                 "time": 3,
                 "unit": 4
