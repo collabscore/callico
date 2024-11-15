@@ -38,8 +38,8 @@ that takes as parameter the target part and the above attributes. Its JSON descr
 ```json
 {
 	"name": "describe_part",
+        "target": "Part2",
 	"params": {
-		"part": "Part2",
                  "intrument": "Chant",
                  "name": "Ténor",
                  "abbreviation": "T."
@@ -47,12 +47,12 @@ that takes as parameter the target part and the above attributes. Its JSON descr
 }
 ```
 
-So the operation has two parameters: ``part``, the id of the part, and
-``values``, which is itself an object with three attributes. 
+So the operation has a ``name``, a ``target`` referring to the
+object(s) the edition applies to, and a ``params``
+dictionary, with three attributes. 
 
 The names and types of the parameters changes from one operation to the other,
-but an operation has *always* a ``name``, from which the expected parameter 
-values can be decoded.
+but an operation has *always* a ``name`` and a ``target``, from which the expected action  can be decoded.
 
 ## Range of editions
 
@@ -125,8 +125,8 @@ The services returns an array of editions:
 [
   {
 	"name": "describe_part",
+         "target"= "Part2",
 	"params": {
-		"part": "Part2",
                  "intrument": "Chant",
                   "name": "Ténor",
                   "abbreviation": "T."
@@ -134,8 +134,8 @@ The services returns an array of editions:
 },
   {
 	"name": "describe_part",
+         "target"= "Part1",
 	"params": {
-		"part": "Part1",
                  "intrument": "Piano",
                  "name": "Piano",
                  "abbreviation": "P."
@@ -181,9 +181,8 @@ See the first example of this document.
 ### Assign staff to part
 
 Tells that a staff is allocated to a part in a given range. The
-parameters are
+target is the part and the parameters are
 
-  - The part id
   - A staff number
   - A range
 
@@ -193,8 +192,8 @@ is allocated to part ``P1``, from the second system of page 3.
 ```json
 {
 	"name": "assign_staff_to_part",
+         "target"= "Part1",
 	"params": {
-		"part": "Part1",
 		"staff_number": 1
 		},
 	"range": {
@@ -208,7 +207,8 @@ is allocated to part ``P1``, from the second system of page 3.
 ###  Merging parts
 
 Two distinct parts can be *merged* (typically, staves interpreted as dictinct
-parts, that actually correspond to a piano part). The parameter
+parts, that actually correspond to a piano part). The target
+is (by convention) the "score" keyword, and the single parameter
 is an array of part's ids. 
 
 Example: the edition specified below merges parts ``p1``  and
@@ -217,6 +217,7 @@ Example: the edition specified below merges parts ``p1``  and
 ```json
 {
 	"name": "merge_parts",
+         "target"= "score",
 	"params": {
 		"parts": ["p1", "p2"]
 		}
@@ -231,9 +232,8 @@ is not specified (clef, signature, note...)
 ```json
 {
 	"name": "remove_object",
-         "params": {
-		"id": "my_id"
-	}
+         "target"= "my_id",
+         "params": {}
  }
 ```
 
@@ -244,8 +244,8 @@ A clef identified by its id can be replaced. Example:
 ```json
 {
 	"name": "replace_clef",
+        "target"= "clef_1029_209",
          "params": {
-		"id": "clef_1029_209",
                  "label": "G",
                  "line": 2
 	}
@@ -265,8 +265,8 @@ A key signature identified by its id can be replaced. Example:
 ```json
 {
 	"name": "replace_keysign",
+         "target"= "ks_1929_1092",
          "params": {
-		"id": "ks_1929_1092",
                  "nb_sharps": 2,
                   "nb_flats": 0
 	}
@@ -280,8 +280,8 @@ A time signature identified by its id can be replaced. Example:
 ```json
 {
 	"name": "replace_timesign",
+         "target"= "ts_1929_1092",
          "params": {
-		"id": "ks_1929_1092",
                 "time": 3,
                 "unit": 4
 	}
