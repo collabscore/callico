@@ -287,3 +287,7 @@ A time signature identified by its id can be replaced. Example:
 	}
  }
 ```
+
+Les valeurs autorisées pour le numérateur sont tous les entiers positifs.
+Les valeurs autorisées pour le dénominateur sont les puissances de 2: 1, 2, 4, 8, 16, 32. Et ça suffit.
+
