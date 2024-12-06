@@ -93,6 +93,45 @@ Exemple:
 En résumé, c'est une séquence qui va de C0 à C9. Ne pas dépasser ces bornes.
 On doit pouvoir coder une fonction javascript qui fait ça.
 
+### Pour les durées
+
+Il y a une séquence qui va de la quadruple croche à la ronde. De plus chaque note
+peut être pointée. On va coder cette séquence commme suit (par exemple, 'tc' indique
+une triple croche, et 'tp-p' une triple croche pointée).
+
+(qc, qc-p, tc, tc-p, dc, dc-p, c, c-p n, n-p, b, b-p, r) 
+
+Quand on sélectionne une note, on doit positionner le curseur dans l'interface sur la durée
+actuelle de la note, prise comme valeur par défaut. On peut se déplacer ensuite vers
+la droite ou la gauche en restant dans les limites du tableau ci-dessus. Idéalement
+il faudrait montrer immédiatement à l'utilisateur l'effet d'un déplacement en
+affichant la valeur courante, dans le widget ou directement dans l'affichage Verovio.
+
+Pour modifier le MusicXML en  fonction du choix effectué c'est un peu compliqué...
+
+Il y a un attribut global *divisions* dans le document XML qui indique le nombre maximal de divisions possibles pour une *noire*. Donc, une valeur de 1 indique qu'on ne peut pas décomposer la noire, une valeur de 4 qu'on ne peut pas la décomposer au-delà des doubles-croches, etc. Cet attribut *divisions*
+se trouve 
+
+```xml
+<measure id="m1-1" implicit="no" number="1">
+<attributes>
+<divisions>10080</divisions>
+<clef id="clef_1223_1710">
+<sign>G</sign>
+<line>2</line>
+</clef>
+</attributes>
+<note id="F1Part2M11r1">
+<rest/>
+<duration>40320</duration>
+<type>whole</type>
+</note>
+</measure>
+```
+
+
+Et ainsi de suite. Cela correspond aux codes MusicXML.
+
 ### Formulaire pour les silences
 
 C'est le plus simple: on ne peut modifier que la durée. La figure ci-dessous montre l'interface de
@@ -130,27 +169,6 @@ alors la durée de toutes les autres doit être modifiée également.
 
 ## Le codage des remplacements.
 
-### Pour les durées
-
-On va utiliser les codes suivants:
-
- - whole = ronde
- - half = blanche
- - quarter = noire
- - eighth = croche
- - 16th = double croche
- - 32th = triple croche
-
-Et ainsi de suite. Cela correspond aux codes MusicXML.
-
-### Pour les altérations 
-
-On va indiquer le nombre de demi-tons ascendants (dièses) ou descendants (bémol). Exemples:
-
-  - 1 indique un dièse
-  -  -1 indique un bémol
-  -  -2 indique deux bémols
-Etc.
 
 
 # Codages des annotations
