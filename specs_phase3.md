@@ -96,10 +96,11 @@ On doit pouvoir coder une fonction javascript qui fait ça.
 ### Pour les durées
 
 Il y a une séquence qui va de la quadruple croche à la ronde. De plus chaque note
-peut être pointée. On va coder cette séquence commme suit (par exemple, 'tc' indique
+après la triple-croche peut être pointée. On va coder cette séquence 
+commme suit (par exemple, 'tc' indique
 une triple croche, et 'tp-p' une triple croche pointée).
 
-(qc, qc-p, tc, tc-p, dc, dc-p, c, c-p n, n-p, b, b-p, r) 
+(qc, tc, tc-p, dc, dc-p, c, c-p n, n-p, b, b-p, r) 
 
 Quand on sélectionne une note, on doit positionner le curseur dans l'interface sur la durée
 actuelle de la note, prise comme valeur par défaut. On peut se déplacer ensuite vers
@@ -110,7 +111,7 @@ affichant la valeur courante, dans le widget ou directement dans l'affichage Ver
 Pour modifier le MusicXML en  fonction du choix effectué c'est un peu compliqué...
 
 Il y a un attribut global *divisions* dans le document XML qui indique le nombre maximal de divisions possibles pour une *noire*. Donc, une valeur de 1 indique qu'on ne peut pas décomposer la noire, une valeur de 4 qu'on ne peut pas la décomposer au-delà des doubles-croches, etc. Cet attribut *divisions*
-se trouve 
+se trouve en début de mesure (exemple ci-dessous). S'il n'est pas présent, c'est le dernier recontré qui fait foi (oui, c'est chiant).
 
 ```xml
 <measure id="m1-1" implicit="no" number="1">
@@ -128,8 +129,22 @@ se trouve
 </note>
 </measure>
 ```
+Ensuite, pour chaque note, silence ou accords, on a un attribut *duration* qui indique le nombre de divisions. En supposant que ``divisions`` vaut 4, on a par exemple:
 
+  - ``duration=1`` : une double-croche
+  - ``duration=4``: une noire
+  - ``duration=6``: une noire pointée
+  - ``duration=8``: une blanche
+  - ``duration=16``: une ronde
 
+Voici donc l'algo pour parcourir les durées autorisées
+
+  - **Quand on monte**: on divise  ``duration`` par ``divisions'', et on multiplie par ``1,5 x divisions``.
+
+Exemples (toujours en supposant que ``divisions`` vaut 4).
+
+  - Si ``duration=4`` (une noire), on calcule (4/4) x 1,5 x 4 = 6, soit une noire pointée
+  - Si  
 Et ainsi de suite. Cela correspond aux codes MusicXML.
 
 ### Formulaire pour les silences
