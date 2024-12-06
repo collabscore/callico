@@ -139,53 +139,41 @@ Ensuite, pour chaque note, silence ou accords, on a un attribut *duration* qui i
 
 Voici donc l'algo pour parcourir les durées autorisées
 
-  - **Quand on monte**: on divise  ``duration`` par ``divisions'', et on multiplie par ``1,5 x divisions``.
+  - **Quand on monte**, on prend la valeur entière de la division de ``duration`` par 2, et on l'ajouter à ``duration``.
+  - **Quand on descend**, on prend la valeur entière de la division de ``duration`` par 2, et on la soustrait de ``duration``.
 
 Exemples (toujours en supposant que ``divisions`` vaut 4).
 
-  - Si ``duration=4`` (une noire), on calcule (4/4) x 1,5 x 4 = 6, soit une noire pointée
-  - Si  
-Et ainsi de suite. Cela correspond aux codes MusicXML.
+En montant:
+  - Si ``duration=4`` (une noire), on calcule *ve=PE(4/2)=2* et on ajoute *4+2*, soit 6, une noire pointée
+  - Si  ``duration=6`` (une noire pointée), on calcule *ve=PE(6/4)=2* et on ajoute *6+2*, soit 8, une blanche
+  - Si  ``duration=2`` (une croche), on calcule *ve=PE(2/2)=1*, on obtient 2+1=3, un croche pôintée
 
-### Formulaire pour les silences
+Mêmes calculs en descendant.
 
-C'est le plus simple: on ne peut modifier que la durée. La figure ci-dessous montre l'interface de
-MuseScore: on peut sélectionner des durées allant de la quadruple croche à la ronde. 
+### Le cas des triolets
 
 On peut aussi indiquer qu'un groupe de notes est un triolet (ou un n-olet en général). Pour cela
 on pointe le premier objet du groupe et on choisit dans un menu déroulant le type de groupement.
 
-![form-musescore](https://github.com/user-attachments/assets/f28f4fb3-e92e-40e2-bdef-00c2b9f8ebea)
-
-### Formulaire pour les notes
-
-On peut modifier les propriétés suivantes:
-
-  - la durée
-  - la hauteur
-  - l'altération
-
-Pour changer la hauteur, idéalement, on bouge la note de haut en bas sur le verovio... Sans doute difficile.
-On peut aussi indiquer l'intervalle de transposition: une tierce au-dessus, une seconde en dessous.... Il 
-faudrait refléter le changement immédiatement dans l'affichage.
-
-Pour changer l'altération on peut choisir dans un menu déroulant: voir ci-dessus.
-
-
-### Formulaire pour les accords
+### Le cas des accords
 
 On peut modifier chaque note de l'accord. *Mais, attention**: si on modifie la durée d'une des notes,
 alors la durée de toutes les autres doit être modifiée également.
 
-### Exemples d'actions utilisateur:
+### Le cas des silences
 
- - on clique sur une note dans l'affichage Verovio ; c'est une noire alors que l'image montre que la réalité est une croche; le formulaire permet de corriger la durée
- -  ou bien: c'est un la 4,  alors que l'image montre que la réalité est do4 ; le formulaire permet de corriger la hauteur de la note
+Pour les silences, on ne peut modifier que la durée
 
 ## Le codage des remplacements.
 
+# Codage de la durée
 
-
+Il faut s'abstraire du codage XML pour les annotations, car on travaille
+directement sur la forme des notes. Le plus simple est d'envoyer la paire
+``(divisions, duration)`` et je me débrouillerai avec ça. La valeur
+de ``duration`` est calculée comme indiquée ci-dessus. 
+`
 # Codages des annotations
 
 Chaque opération d'édition doit être codée en JSON avec les paramètres nécessaires. Voir le document https://github.com/collabscore/callico/blob/main/editions.md pour la liste des éditions. Dans 
@@ -194,11 +182,21 @@ les cas (sauf les triolets) on indique un identifiant d'objet et les propriété
 
 Quelques exemples de codage:
 
-Changement de la durée. 
+Changement de la durée (en envoie une noire)
 
 ```json
    {
-     "duration": "16th"
+      "divisions": 4, 
+     "duration": 4
+   }
+```
+
+Changement de la durée (en envoie une double-croche)
+
+```json
+   {
+      "divisions": 32, 
+     "duration": 8
    }
 ```
 
@@ -211,13 +209,13 @@ Changement de la hauteur.
 ```
 
 
-Changement de la durée, de la hauteur et ajout d'un dièse
+Changement de la durée (une croche), de la hauteur et ajout d'un dièse
 
 ```json
    {
      "pitch": "D6",
-     "duration": "16th",
-      "alter": 1
+     "duration": "16",
+      "alter": 8
    }
 ```
 
