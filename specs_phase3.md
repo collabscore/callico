@@ -12,15 +12,14 @@ ou supprimer un élément existant. On ne peut pas ajouter d'élément.
 
 ## Obtenir les annotations liant un  objet musical et sa région sur l'image
 
-Connaissant la reférence d'un opus (par exemple ``all:collabscore:saintsaens-ref:C006_0``), obtient la liste 
-des notes, clés et simlences
+Connaissant la reférence d'un opus (par exemple ``all:collabscore:saintsaens-ref:C006_0``), on obtient la liste 
+des notes, clés et silences
 sous la forme d'annotations liant l'identifiant de l'objet dans le XML et la région sur l'image.
 Le modèle d'annotation est ``image-region``, et le concept d'annotation est ``note-region``.
 
 Voici un exemple de l'URL d'appel pour l'opus all:collabscore:saintsaens-ref:C006_0.
 
 https://neuma.huma-num.fr/rest/collections/all:collabscore:saintsaens-ref:C006_0/_annotations/image-region/note-region/
-
 
 ## Obtenir les annotations indiquant une demande de correction sur un objet musical 
 
@@ -37,19 +36,20 @@ https://neuma.huma-num.fr/rest/collections/all:collabscore:saintsaens-ref:C006_0
 
 L'interface doit permettre de collecter un ensemble d'éditions qui seront appliquées au résultat de l'OMR. Ces éditions sont de plusieurs types:
 
-  -  edition d'une note
+  - édition d'une note ou d'un accord
   - édition d'un silence
   - suppression d'un objet
 
 Par application des éditions au résultat "brut" de l'OMR avec le service ``apply_editions``, 
-on obtient une partition corrigée des erreurs de l'OMR.
+on obtient une partition corrigée des erreurs de l'OMR. **Mais** il est très facile également d'effectuer directement la modification sur le document Verovio puisque l'impact de la modification n'est que local, contrairement au cas des clés, armures et métriques.
 
 La granularité des tâches proposées à l'utilisateur pour cette phase est, comme pour la phase 1, *la partition complète* (contrairement à ce qui avait été envisagé initialement). On peut parier, sur la base des premières expériences, que le nombre d'erreurs sera très limité et les corrections très rapides.
 
 ## L'interface
 
-L'interface est identique à celle de la phase 2. On affiche en vis-à-vis une page de la partition et la page correspondante 
-produite avec Verovio.
+L'interface est identique à celle de la phase 2. On affiche en vis-à-vis une page de la partition et la page correspondante produite avec Verovio. **On peut, au moins dans un premier temps
+intégrer les deux phases en déclenchant le widget de phase 2 sur les clés, armures et métriques,
+et le widget de phase 3 sur les notes, accords et silences**.
 
 Ce qui change, c'est le type
 des objets que l'on peut modifier: uniquement les notes, silences et accords. 
@@ -62,6 +62,36 @@ objets.
 L'interface doit permettre de saisir une action d'édition sur un objet. Elle consiste à 
 proposer un formulaire avec un ensemble de propriétés, en proposant comme valeurs
 par défaut celles issues de l'OMR.
+
+### Les modifications autorisées
+
+## Les altérations
+
+On pointe une note, y compris si elle est dans un accord, et on ajoute/supprime des dièses
+ou des bémols. **Le nombre d'options est limité**: 0, 1 ou 2 dièses, 1 ou deux bémols.
+
+## La hauteur
+
+On pointe une note, y compris si elle est dans un accord, et on modifie sa hauteur en
+se déplaçant dans la séquence. Le déplacement correspond au nombre de lignes et 
+interlignes vers le haut ou le bas.
+
+Etant donné ce déplacement, il faut 
+être capable de déterminer le nouveau codage de la note. Ce codage est constitué 
+de deux valeurs: le *pitch name* (A, B, C, D, E, F, G) et l'octave (voir https://en.wikipedia.org/wiki/Scientific_pitch_notation 
+par exemple). 
+
+Un déplacement positif indique une progression vers la droite, un déplacement négatif un 
+déplacement vers la gauche. Quand on atteint l'extrémité de droite (donc un Gx), on ajoute +1 
+à l'octave et on obtient A(x+1). Quand on atteint l'extrémité de gauche (donc un Ax) 
+c'est l'inverse, on obtient G(x-1).
+
+Exemple:
+  - À partir d'un A4, avec une transposition de +1, on obtient B4
+  - À partir d'un A4, avec une transposition de -1, on obtient G3
+
+En résumé, c'est une séquence qui va de C0 à C9. Ne pas dépasser ces bornes.
+On doit pouvoir coder une fonction javascript qui fait ça.
 
 ### Formulaire pour les silences
 
@@ -121,22 +151,6 @@ On va indiquer le nombre de demi-tons ascendants (dièses) ou descendants (bémo
   -  -1 indique un bémol
   -  -2 indique deux bémols
 Etc.
-
-### Pour la hauteur 
-
-En supposant que l'utiliisateur indique l'intervalle de transposition (soit, +1, +3, -4, etc). Il faudrait
-être capable de déterminer le nouveau codage du pitch, qui est constitué de deux valeurs: le
-*pitch name* (A, B, C, D, E, F, G) et l'octave (voir https://en.wikipedia.org/wiki/Scientific_pitch_notation 
-par exemple).
-
-Exemple:
-  - À partir d'un A4, avec une transposition de +1, on obtient B4
-  - À partir d'un A4, avec une transposition de -1, on obtient G3
-
-En résumé, c'est une séquence qui va de C0 à C9. Quand on arrive sur un Gn, on passe au An+1 (la
-note qui suit G3 est A4). 
-
-On doit pouvoir coder une fonction javascript qui fait ça.
 
 
 # Codages des annotations
