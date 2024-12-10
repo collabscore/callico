@@ -7,14 +7,11 @@ objets musicaux, définis comme *tout objet ayant une durée*. Cela couvre:
  - les **accords** : on sélectionne une des têtes de note de l'accord
  - les **silences**  : on sélectionne le symbole du silence
 
-On ne peut que corriger un élément existant en modifiant certaines de ses propriétés (durée, hauteur, etc.)
-ou supprimer un élément existant. On ne peut pas ajouter d'élément.
+On ne peut que corriger un élément existant en modifiant certaines de ses propriétés (durée, hauteur, etc.) ou supprimer un élément existant. On ne peut pas ajouter d'élément.
 
 ## Obtenir les annotations liant un  objet musical et sa région sur l'image
 
-Connaissant la reférence d'un opus (par exemple ``all:collabscore:saintsaens-ref:C006_0``), on obtient la liste 
-des notes, clés et silences
-sous la forme d'annotations liant l'identifiant de l'objet dans le XML et la région sur l'image.
+Connaissant la reférence d'un opus (par exemple ``all:collabscore:saintsaens-ref:C006_0``), on obtient la liste des notes, clés et silences sous la forme d'annotations liant l'identifiant de l'objet dans le XML et la région sur l'image.
 Le modèle d'annotation est ``image-region``, et le concept d'annotation est ``note-region``.
 
 Voici un exemple de l'URL d'appel pour l'opus all:collabscore:saintsaens-ref:C006_0.
@@ -68,7 +65,7 @@ par défaut celles issues de l'OMR.
 ## Les altérations
 
 On pointe une note, y compris si elle est dans un accord, et on ajoute/supprime des dièses
-ou des bémols. **Le nombre d'options est limité**: 0, 1 ou 2 dièses, 1 ou deux bémols.
+ou des bémols. **Le nombre d'options est limité**: 1 ou 2 dièses, 1 ou 2 bémols, 0 altérations.
 
 ## La hauteur
 
@@ -81,7 +78,7 @@ Etant donné ce déplacement, il faut
 de deux valeurs: le *pitch name* (A, B, C, D, E, F, G) et l'octave (voir https://en.wikipedia.org/wiki/Scientific_pitch_notation 
 par exemple). 
 
-Un déplacement positif indique une progression vers la droite, un déplacement négatif un 
+Un déplacement positif indique une progression vers la droite dans cette liste, un déplacement négatif un 
 déplacement vers la gauche. Quand on atteint l'extrémité de droite (donc un Gx), on ajoute +1 
 à l'octave et on obtient A(x+1). Quand on atteint l'extrémité de gauche (donc un Ax) 
 c'est l'inverse, on obtient G(x-1).
@@ -89,13 +86,16 @@ c'est l'inverse, on obtient G(x-1).
 Exemple:
   - À partir d'un A4, avec une transposition de +1, on obtient B4
   - À partir d'un A4, avec une transposition de -1, on obtient G3
+  - À partir de G4 avec une transposition de +1 on obtient A5
 
 En résumé, c'est une séquence qui va de C0 à C9. Ne pas dépasser ces bornes.
 On doit pouvoir coder une fonction javascript qui fait ça.
 
 ### Pour les durées
 
-Il y a une séquence qui va de la quadruple croche à la ronde. De plus chaque note
+Il y a une séquence de durée acceptables
+qui va de la quadruple croche à la ronde (ce serait bien de la paramétrer
+pour pouvoir la changer facilement). De plus chaque note
 après la triple-croche peut être pointée. On va coder cette séquence 
 commme suit (par exemple, 'tc' indique
 une triple croche, et 'tp-p' une triple croche pointée).
@@ -108,10 +108,9 @@ la droite ou la gauche en restant dans les limites du tableau ci-dessus. Idéale
 il faudrait montrer immédiatement à l'utilisateur l'effet d'un déplacement en
 affichant la valeur courante, dans le widget ou directement dans l'affichage Verovio.
 
-Pour modifier le MusicXML en  fonction du choix effectué c'est un peu compliqué...
+Pour modifier le MusicXML en  fonction du choix effectué on procède comme suit.
 
-Il y a un attribut global *divisions* dans le document XML qui indique le nombre maximal de divisions possibles pour une *noire*. Donc, une valeur de 1 indique qu'on ne peut pas décomposer la noire, une valeur de 4 qu'on ne peut pas la décomposer au-delà des doubles-croches, etc. Cet attribut *divisions*
-se trouve en début de mesure (exemple ci-dessous). S'il n'est pas présent, c'est le dernier recontré qui fait foi (oui, c'est chiant).
+Il y a un attribut global *divisions* dans le document XML qui indique le nombre maximal de divisions possibles pour une *noire*. Donc, une valeur de 1 indique qu'on ne peut pas décomposer la noire, une valeur de 4 qu'on ne peut pas la décomposer au-delà des doubles-croches, etc. Cet attribut *divisions* se trouve en début de mesure (exemple ci-dessous). S'il n'est pas présent, c'est le dernier recontré qui fait foi (oui, c'est chiant).
 
 ```xml
 <measure id="m1-1" implicit="no" number="1">
@@ -129,25 +128,34 @@ se trouve en début de mesure (exemple ci-dessous). S'il n'est pas présent, c'e
 </note>
 </measure>
 ```
-Ensuite, pour chaque note, silence ou accords, on a un attribut *duration* qui indique le nombre de divisions. En supposant que ``divisions`` vaut 4, on a par exemple:
+Ensuite, pour chaque note, silence ou accord, on a un attribut *duration* qui indique le nombre de divisions. En supposant que ``divisions`` vaut 4, il faut
+quatre unités pour faire une noire. On a donc par exemple:
 
   - ``duration=1`` : une double-croche
+  - ``duration=2`` : une croche
   - ``duration=4``: une noire
   - ``duration=6``: une noire pointée
   - ``duration=8``: une blanche
   - ``duration=16``: une ronde
 
-Voici donc l'algo pour parcourir les durées autorisées
+Voici donc l'algo pour parcourir les durées autorisées. On part d'une
+note et on détermine un pas de progression qui reste constant tant qu'on ne
+change pas de sens. **Le pas de progression, noté PP,  est toujours la valeur 
+entière de la division de ``duration`` par ``2``, le tout multiplié par 2.**
 
-  - **Quand on monte**, on prend la valeur entière de la division de ``duration`` par 2, et on l'ajouter à ``duration``.
-  - **Quand on descend**, on prend la valeur entière de la division de ``duration`` par 2, et on la soustrait de ``duration``.
+  - **Quand on monte**, on ajoute PP à ``duration``.
+  - **Quand on descend**, on le soustrait de ``duration``.
 
-Exemples (toujours en supposant que ``divisions`` vaut 4).
+**Très important**: 
+  - quand on change de sens on réinitialise le pas de progression.
+  - la valeur minimale de ``duration`` est 1, on ne descend jamais au-dessous
+
+Exemples (toujours en supposant que ``divisions`` vaut 4, donc l'unité est la double croche).
 
 En montant:
-  - Si ``duration=4`` (une noire), on calcule *ve=PE(4/2)=2* et on ajoute *4+2*, soit 6, une noire pointée
-  - Si  ``duration=6`` (une noire pointée), on calcule *ve=PE(6/4)=2* et on ajoute *6+2*, soit 8, une blanche
-  - Si  ``duration=2`` (une croche), on calcule *ve=PE(2/2)=1*, on obtient 2+1=3, un croche pôintée
+  - Si ``duration=4`` (une noire), on calcule *PP=2 x PE(4/2)=2* et on ajoute *4+2*, on obtient 6, une noire pointée
+  - Si  ``duration=6`` (une noire pointée), on calcule *PP=2 x PE(6/2)=2* et on ajoute *6+2*, on obtient 8, une blanche
+  - Si  ``duration=2`` (une croche), on calcule *PP=PE(2/2)=1*, on obtient 2+1=3, un croche pointée
 
 Mêmes calculs en descendant.
 
