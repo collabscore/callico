@@ -140,8 +140,15 @@ quatre unités pour faire une noire. On a donc par exemple:
 
 Voici donc l'algo pour parcourir les durées autorisées. On part d'une
 note et on détermine un pas de progression qui reste constant tant qu'on ne
-change pas de sens. **Le pas de progression, noté PP,  est toujours la valeur 
-entière de la division de ``duration`` par ``2``, le tout multiplié par 2.**
+change pas de sens. Le pas de progression, noté PP,  est calculé
+de la manière suivante:
+  - Si ``duration`` est supérieur ou égal a ``divisions``
+       - on cherche le plus grand entier ``n``  tel que ``n x divisions >= duration``.
+  - sinon, si ``duration`` est strictement inférieura ``divisions``
+       - on cherche le plus grand entier ``n``  tel que ``divisions / n <= duration``.
+  - le pas PP est égal à ``n x divisions / 2``
+
+Idée: la progession est la moitié de la valeur  
 
   - **Quand on monte**, on ajoute PP à ``duration``.
   - **Quand on descend**, on le soustrait de ``duration``.
