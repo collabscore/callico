@@ -117,8 +117,7 @@ Il faut y ajouter des options:
   - Chaque valeur de note peut être pointée: soit on met une case à cocher "Pointé", soit on ajoute les valeurs pointées dans la liste déroulante
   - Enfin on peut indiquer qu'une note ou un silence  est le début d'un n-olet (triolet, etc.)
 
-**Comment modifier le MusicXML*.  
-
+**Comment modifier le MusicXML**.  
 Il y a un attribut global *divisions* dans le document XML qui indique le nombre maximal de divisions possibles pour une *noire*. Donc, une valeur de 1 indique qu'on ne peut pas décomposer la noire, une valeur de 4 qu'on ne peut pas la décomposer au-delà des doubles-croches, etc. Cet attribut *divisions* se trouve en début de mesure (exemple ci-dessous). S'il n'est pas présent, c'est le dernier recontré qui fait foi (oui, c'est chiant).
 
 ```xml
