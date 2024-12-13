@@ -152,7 +152,18 @@ La formule générale pour calculer la valeur de ``duration`` est donc
 
 ```JSON
 {
-  "n": 1
+  "qc": 1/16,
+  "tc": 1/8,
+  "tc-p": 3/16,
+  "dc": 1/4,
+  "dc-p": 3/8,
+ "c":  1/2,
+  "c-p": 3/4,
+  "n": 1,
+   "n-p": 3/2,
+  "b": 2,
+   "b-p": 3,
+"r": 4   
 }
 ```
 
