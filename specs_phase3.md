@@ -114,7 +114,6 @@ La figure ci-dessous montre la liste des valeurs proposées dans MuseScore
 
 Il faut y ajouter des options:
   - on peut transformer une note en silence ou un silence en note ; un case à cocher "silence" peut faire l'affaire
-  - Chaque valeur de note peut être pointée: soit on met une case à cocher "Pointé", soit on ajoute les valeurs pointées dans la liste déroulante
   - Enfin on peut indiquer qu'une note ou un silence  est le début d'un n-olet (triolet, etc.)
 
 **Comment modifier le MusicXML**.  
