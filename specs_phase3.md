@@ -106,9 +106,18 @@ Quand on sélectionne une note, on doit positionner le curseur dans l'interface 
 actuelle de la note, prise comme valeur par défaut. On peut se déplacer ensuite vers
 la droite ou la gauche en restant dans les limites du tableau ci-dessus. Idéalement
 il faudrait montrer immédiatement à l'utilisateur l'effet d'un déplacement en
-affichant la valeur courante, dans le widget ou directement dans l'affichage Verovio.
+affichant la valeur courante, dans le widget ou directement dans l'affichage Verovio,
+comme on le fait déjà pour les clefs ou les armures.
 
-Pour modifier le MusicXML en  fonction du choix effectué on procède comme suit.
+La figure ci-dessous montre la liste des valeurs proposées dans MuseScore
+[Capture d’écran 2024-12-13 à 09.23.36.pdf](https://github.com/user-attachments/files/18123422/Capture.d.ecran.2024-12-13.a.09.23.36.pdf)
+
+Il faut y ajouter des options:
+  - on peut transformer une note en silence ou un silence en note ; un case à cocher "silence" peut faire l'affaire
+  - Chaque valeur de note peut être pointée: soit on met une case à cocher "Pointé", soit on ajoute les valeurs pointées dans la liste déroulante
+  - Enfin on peut indiquer qu'une note ou un silence  est le début d'un n-olet (triolet, etc.)
+
+**Comment modifier le MusicXML*.  
 
 Il y a un attribut global *divisions* dans le document XML qui indique le nombre maximal de divisions possibles pour une *noire*. Donc, une valeur de 1 indique qu'on ne peut pas décomposer la noire, une valeur de 4 qu'on ne peut pas la décomposer au-delà des doubles-croches, etc. Cet attribut *divisions* se trouve en début de mesure (exemple ci-dessous). S'il n'est pas présent, c'est le dernier recontré qui fait foi (oui, c'est chiant).
 
@@ -138,6 +147,22 @@ quatre unités pour faire une noire. On a donc par exemple:
   - ``duration=8``: une blanche
   - ``duration=16``: une ronde
 
+La formule générale pour calculer la valeur de ``duration`` est donc
+``divisions x facteur_durée``, le facteur durée étant donné ci-dessous.
+
+```JSON
+{
+  "n": 1
+}
+```
+
+(qc, tc, tc-p, dc, dc-p, c, c-p n, n-p, b, b-p, r) 
+
+### Section obsolète
+
+Si on ne peut pas mettre la liste des valeurs de notes mais qu'on se contente 
+d'un +/-, il faut définir un pas de progression, ce qui est très difficile. 
+**Ce qui suit est une ébauche, à supprimer sans doute.**
 Voici donc l'algo pour parcourir les durées autorisées. On part d'une
 note et on détermine un pas de progression qui reste constant tant qu'on ne
 change pas de sens. Le pas de progression, noté PP,  est calculé
