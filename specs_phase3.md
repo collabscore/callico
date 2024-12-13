@@ -151,6 +151,7 @@ La formule générale pour calculer la valeur de ``duration`` est donc
 ```JSON
 {
   "qc": 1/16,
+   "qp-p": 3/32,
   "tc": 1/8,
   "tc-p": 3/16,
   "dc": 1/4,
@@ -164,9 +165,6 @@ La formule générale pour calculer la valeur de ``duration`` est donc
 "r": 4   
 }
 ```
-
-(qc, tc, tc-p, dc, dc-p, c, c-p n, n-p, b, b-p, r) 
-
 ### Section obsolète
 
 Si on ne peut pas mettre la liste des valeurs de notes mais qu'on se contente 
