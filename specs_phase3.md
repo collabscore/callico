@@ -31,6 +31,9 @@ https://neuma.huma-num.fr/rest/collections/all:collabscore:saintsaens-ref:C006_0
 
 <img width="270" alt="Capture d’écran 2024-10-24 à 11 54 35" src="https://github.com/user-attachments/assets/ade110c5-5a15-47ea-8a3f-4828fd52bac5">
 
+![Capture d’écran 2024-12-13 à 10 13 05](https://github.com/user-attachments/assets/a51eb80d-af62-4c12-8710-c12584a42775)
+
+
 L'interface doit permettre de collecter un ensemble d'éditions qui seront appliquées au résultat de l'OMR. Ces éditions sont de plusieurs types:
 
   - édition d'une note ou d'un accord
