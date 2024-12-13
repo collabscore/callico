@@ -201,11 +201,11 @@ Mêmes calculs en descendant.
 ### Le cas des triolets
 
 On peut aussi indiquer qu'un groupe de notes est un triolet (ou un n-olet en général). Pour cela
-on pointe le premier objet du groupe et on choisit dans un menu déroulant le type de groupement.
+on pointe le premier objet du groupe et on choisit dans un menu déroulant le type de groupement: une valeur entre 2 et 10.
 
 ### Le cas des accords
 
-On peut modifier chaque note de l'accord. *Mais, attention**: si on modifie la durée d'une des notes,
+On peut modifier chaque note de l'accord. *Mais, attention*: si on modifie la durée d'une des notes,
 alors la durée de toutes les autres doit être modifiée également.
 
 ### Le cas des silences
