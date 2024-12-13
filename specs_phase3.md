@@ -100,7 +100,7 @@ après la triple-croche peut être pointée. On va coder cette séquence
 commme suit (par exemple, 'tc' indique
 une triple croche, et 'tp-p' une triple croche pointée).
 
-(qc, tc, tc-p, dc, dc-p, c, c-p, n, n-p, b, b-p, r) 
+(qc, qp-p, tc, tc-p, dc, dc-p, c, c-p, n, n-p, b, b-p, r) 
 
 Quand on sélectionne une note, on doit positionner le curseur dans l'interface sur la durée
 actuelle de la note, prise comme valeur par défaut. On peut se déplacer ensuite vers
