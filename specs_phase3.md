@@ -67,6 +67,12 @@ par défaut celles issues de l'OMR.
 On pointe une note, y compris si elle est dans un accord, et on ajoute/supprime des dièses
 ou des bémols. **Le nombre d'options est limité**: 1 ou 2 dièses, 1 ou 2 bémols, 0 altérations.
 
+Dans le MusicXML on a 'accidental' => ce qui est montré et "alter", l'altération de la note qu'on veut entendre. On va oublier « accidental » et on va se contenter de modifier «alter » 
+
+*The <alter> element represents chromatic alteration in number of semitones (e.g., -1 for flat, 1 for sharp).*
+
+Donc les valeurs que tu autorises pour « alter » c’est (-2, -1, 0, 1, 2).  Tu supprimes l’élément « accidental » quand tu fais la modification et Verovio devrait être capable de se débrouiller.
+
 ## La hauteur
 
 On pointe une note, y compris si elle est dans un accord, et on modifie sa hauteur en
