@@ -29,7 +29,8 @@ https://neuma.huma-num.fr/rest/collections/all:collabscore:saintsaens-ref:C006_0
 
 ## Principe de l'interface
 
-<img width="270" alt="Capture d’écran 2024-10-24 à 11 54 35" src="https://github.com/user-attachments/assets/c4a12135-4a91-4580-b486-49d8300468e1">
+<img width="270" alt="phase3" src="https://github.com/user-attachments/assets/48fe53c2-ff12-465a-baae-a0a77a445a00" />
+
 
 L'interface doit permettre de collecter un ensemble d'éditions qui seront appliquées au résultat de l'OMR. Ces éditions sont de plusieurs types:
 
