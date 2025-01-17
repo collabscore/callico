@@ -115,7 +115,7 @@ On doit pouvoir coder une fonction javascript qui fait ça.
 
 ### Modification de la durée
 
-Il y a une séquence de durée acceptables
+Il y a une séquence de durées acceptables
 qui va de la quadruple croche à la ronde (ce serait bien de la paramétrer
 pour pouvoir la changer facilement). De plus chaque note
 après la triple-croche peut être pointée. On va coder cette séquence 
@@ -132,7 +132,7 @@ affichant la valeur courante, dans le widget ou directement dans l'affichage Ver
 comme on le fait déjà pour les clefs ou les armures.
 
 La figure ci-dessous montre la liste des valeurs proposées dans MuseScore
-[Capture d’écran 2024-12-13 à 09.23.36.pdf](https://github.com/user-attachments/files/18123422/Capture.d.ecran.2024-12-13.a.09.23.36.pdf)
+![duree-musescore](https://github.com/user-attachments/assets/4eefdca6-de78-4450-9710-de055a63a8a2)
 
 Il faut y ajouter des options:
   - on peut transformer une note en silence ou un silence en note ; un case à cocher "silence" peut faire l'affaire
