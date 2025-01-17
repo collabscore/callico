@@ -288,21 +288,64 @@ A time signature identified by its id can be replaced. Example:
  }
 ```
 
+Les valeurs autorisées pour le numérateur sont tous les entiers positifs.
+Les valeurs autorisées pour le dénominateur sont les puissances de 2: 1, 2, 4, 8, 16, 32. Et ça suffit.
+
+
 ###  Update a music element
 
-A music element (note or rest) identified by its id can be replaced. Example:
+A music element (note or rest) identified by its id can be updated. The values 
+produced by the interface are described in https://github.com/collabscore/callico/blob/main/specs_phase3.md.
+Here is a list of examples:
+
+The pitch is moved up two levels:
 
 ```json
 {
 	"name": "update_music_element",
          "target": "nh_1929_1092",
          "params": {
-                "time": 3,
-                "unit": 4
+               "pitch_change": 2
 	}
  }
 ```
 
-Les valeurs autorisées pour le numérateur sont tous les entiers positifs.
-Les valeurs autorisées pour le dénominateur sont les puissances de 2: 1, 2, 4, 8, 16, 32. Et ça suffit.
+The pitch is moved down one level, and the number of flats must be set to 1:
 
+```json
+{
+	"name": "update_music_element",
+         "target": "nh_1929_1092",
+         "params": {
+               "pitch_change": -1,
+               "alter": -1
+	}
+ }
+```
+
+The duration is a dotted quarter:
+
+```json
+{
+	"name": "update_music_element",
+         "target": "nh_1929_1092",
+         "params": {
+               "duration": "quarter",
+               "dots": 1
+	}
+ }
+```
+
+The duration is  a dotted eighth, and alteration is set to one sharp.
+
+```json
+{
+	"name": "update_music_element",
+         "target": "nh_1929_1092",
+         "params": {
+               "duration": "eighth",
+               "dots": 1,
+                "alter": 1
+	}
+ }
+```
