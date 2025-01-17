@@ -117,28 +117,40 @@ On doit pouvoir coder une fonction javascript qui fait ça.
 
 Il y a une séquence de durées acceptables
 qui va de la quadruple croche à la ronde (ce serait bien de la paramétrer
-pour pouvoir la changer facilement). De plus chaque note
-après la triple-croche peut être pointée. On va coder cette séquence 
-commme suit (par exemple, 'tc' indique
-une triple croche, et 'tp-p' une triple croche pointée).
+pour pouvoir la changer facilement). La figure ci-dessous montre la liste des valeurs proposées dans MuseScore
 
-(qc, qp-p, tc, tc-p, dc, dc-p, c, c-p, n, n-p, b, b-p, r) 
+![duree-musescore](https://github.com/user-attachments/assets/4eefdca6-de78-4450-9710-de055a63a8a2)
+
+On va coder cette séquence commme suit (par exemple, 'qc' indique une quadruple croche, 'tc' indique
+une triple croche, etc).
+
+(qc, tc, dc, c,  n, b, r) 
 
 Quand on sélectionne une note, on doit positionner le curseur dans l'interface sur la durée
 actuelle de la note, prise comme valeur par défaut. On peut se déplacer ensuite vers
 la droite ou la gauche en restant dans les limites du tableau ci-dessus. Idéalement
 il faudrait montrer immédiatement à l'utilisateur l'effet d'un déplacement en
 affichant la valeur courante, dans le widget ou directement dans l'affichage Verovio,
-comme on le fait déjà pour les clefs ou les armures.
-
-La figure ci-dessous montre la liste des valeurs proposées dans MuseScore
-![duree-musescore](https://github.com/user-attachments/assets/4eefdca6-de78-4450-9710-de055a63a8a2)
+comme on le fait déjà pour les clefs ou les armures. Il est sans doute plus facile d'appeler ``apply_editions``   pour un changement de durée 
+que de modifier le MusicXML. Cela dit c'est expliqué plus bas.
 
 Il faut y ajouter des options:
   - on peut transformer une note en silence ou un silence en note ; un case à cocher "silence" peut faire l'affaire
   - Enfin on peut indiquer qu'une note ou un silence  est le début d'un n-olet (triolet, etc.)
 
+L'interface doit donc permettre de collecter les trois paramètres suivants validés
+par l'utilisateur.
+
+   - le code de la durée choisie
+   - un booléen indiquand si le symbole est ou non un silence (True: c'est un silence, False ou absent: c'est une note)
+   - le facteur *n* de la *n*-olisation: 3 pour un triolet, 4 pour un quatroplet, etc.
+
+Ces trois paramètres sont à transmettre au service d'édition.
+
 **Comment modifier le MusicXML**.  
+
+
+
 Il y a un attribut global *divisions* dans le document XML qui indique le nombre maximal de divisions possibles pour une *noire*. Donc, une valeur de 1 indique qu'on ne peut pas décomposer la noire, une valeur de 4 qu'on ne peut pas la décomposer au-delà des doubles-croches, etc. Cet attribut *divisions* se trouve en début de mesure (exemple ci-dessous). S'il n'est pas présent, c'est le dernier recontré qui fait foi (oui, c'est chiant).
 
 ```xml
