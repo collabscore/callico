@@ -184,20 +184,14 @@ alors la durée de toutes les autres doit être modifiée également.
 
 Pour les silences, on ne peut modifier que la durée
 
-# Le codage des remplacements pour l'appel au service d'édition
+# L'appel au service d'édition
 
-## Codage de la durée
+On appelle le service ``apply_editions`` (en passant le paramètre HTTP ``format=json``) pour 
+un recalcul immédiat de la partition. Comme d'habitude le JSON des éditions doit 
+être stocké dans l'annotation de Callico pour être ensuite intégré définitivement dans Neuma.
 
-Il faut s'abstraire du codage XML pour les annotations, car on travaille
-directement sur la forme des notes. Le plus simple est d'envoyer la paire
-``(divisions, duration)`` et je me débrouillerai avec ça. La valeur
-de ``duration`` est calculée comme indiquée ci-dessus. 
-`
-## Codages des annotations
-
-Chaque opération d'édition doit être codée en JSON avec les paramètres nécessaires. Voir le document https://github.com/collabscore/callico/blob/main/editions.md pour la liste des éditions. Dans 
-à peu près tous
-les cas (sauf les triolets) on indique un identifiant d'objet et les propriétés à modifier.
+Voici des exemples de codage. Il faut se référer au document https://github.com/collabscore/callico/blob/main/editions.md pour la liste des services. Tout
+ce qui suit correspond aux paramètres du service ``update_music_element``.
 
 ### Codage des changements de hauteur
 
@@ -220,6 +214,19 @@ nombre de déplacements.
      "pitch_change": -2
    }
 ```
+
+## Codage de la durée
+
+Il faut s'abstraire du codage XML pour les annotations, car on travaille
+directement sur la forme des notes. Le plus simple est d'envoyer la paire
+``(divisions, duration)`` et je me débrouillerai avec ça. La valeur
+de ``duration`` est calculée comme indiquée ci-dessus. 
+`
+## Codages des annotations
+
+Chaque opération d'édition doit être codée en JSON avec les paramètres nécessaires. Voir le document https://github.com/collabscore/callico/blob/main/editions.md pour la liste des éditions. Dans 
+à peu près tous
+les cas (sauf les triolets) on indique un identifiant d'objet et les propriétés à modifier.
 
 ### Codage des changements d'altération
 
