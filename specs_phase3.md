@@ -172,38 +172,6 @@ La formule générale pour calculer la valeur de ``duration`` est donc
 "r": 4   
 }
 ```
-### Section obsolète
-
-Si on ne peut pas mettre la liste des valeurs de notes mais qu'on se contente 
-d'un +/-, il faut définir un pas de progression, ce qui est très difficile. 
-**Ce qui suit est une ébauche, à supprimer sans doute.**
-Voici donc l'algo pour parcourir les durées autorisées. On part d'une
-note et on détermine un pas de progression qui reste constant tant qu'on ne
-change pas de sens. Le pas de progression, noté PP,  est calculé
-de la manière suivante:
-  - Si ``duration`` est supérieur ou égal a ``divisions``
-       - on cherche le plus grand entier ``n``  tel que ``power(n,2) x divisions >= duration``.
-  - sinon, si ``duration`` est strictement inférieur a ``divisions``
-       - on cherche le plus grand entier ``n``  tel que ``divisions / power(n,2) <= duration``.
-  - le pas PP est égal à ``power(2, n-1)`` si ``n`` est supérieur à 1, ``power(2, n)`` sinon
-
-  - **Quand on monte**, on ajoute PP à ``duration``.
-  - **Quand on descend**, on le soustrait de ``duration``.
-
-**Très important**: 
-  - quand on change de sens on réinitialise le pas de progression.
-  - la valeur minimale de ``duration`` est 1, on ne descend jamais au-dessous
-
-Exemples (toujours en supposant que ``divisions`` vaut 4, donc l'unité est la double croche).
-
-En montant:
-  - Si ``duration=4`` (une noire), ``n`` vaut 2 car *power(2,2) = 4*. *PP=power(2,1)= 2* et on ajoute donc une croche de valeur 2, on obtient 6, une noire pointée
-  - Si  ``duration=6`` (une noire pointée), ``n`` vaut 2 car *power(2,2) = 4 <= 6* et c'est le plus grand possible. On ajoute *2* à *6*, on obtient 8, une blanche
-  - Si  ``duration=8`` (une blanche), ``n`` vaut 3 car *power(2,3) = 8 <= 8*. *PP=power(2,2)= 4* et on ajoute *4* à *8*, on obtient 12, une blanche pointée.
-  - Si  ``duration=2`` (une croche), ``n`` vaut 1 car *power(2,1) = 2*. *PP=power(2,0)= 1*, on obtient *2+1=3*, une croche pointée
-  - Si  ``duration=1`` (une double-croche), ``n`` vaut 0 car *power(2,0) = 1*. *PP=power(2,0)= 1*, on obtient *2+1=3*, une croche pointée
-
-Mêmes calculs en descendant.
 
 ### Le cas des triolets
 
