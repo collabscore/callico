@@ -68,19 +68,19 @@ ou des bémols. **Le nombre d'options est limité**: 1 ou 2 dièses, 1 ou 2 bém
 Dans le MusicXML on a ``accidental`` => ce qui est montré et ``alter``, l'altération de la note qu'on veut entendre. On va oublier ``accidental`` et on va se contenter de modifier ``alter``. Voici une note avec un bémol.
 
 ```xml
-pitch>
-<step>B</step>
-<alter>-1</alter>
-<octave>2</octave>
+<pitch>
+  <step>B</step>
+  <alter>-1</alter>
+  <octave>2</octave>
 </pitch>
 ```
 Voici un élément avec 2 dièses. 
 
 ```xml
-pitch>
-<step>G</step>
-<alter>2</alter>
-<octave>4</octave>
+<pitch>
+  <step>G</step>
+  <alter>2</alter>
+  <octave>4</octave>
 </pitch>
 ```
 
