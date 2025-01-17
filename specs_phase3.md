@@ -65,11 +65,29 @@ par défaut celles issues de l'OMR.
 On pointe une note, y compris si elle est dans un accord, et on ajoute/supprime des dièses
 ou des bémols. **Le nombre d'options est limité**: 1 ou 2 dièses, 1 ou 2 bémols, 0 altérations.
 
-Dans le MusicXML on a 'accidental' => ce qui est montré et "alter", l'altération de la note qu'on veut entendre. On va oublier « accidental » et on va se contenter de modifier «alter » 
+Dans le MusicXML on a ``accidental`` => ce qui est montré et ``alter``, l'altération de la note qu'on veut entendre. On va oublier ``accidental`` et on va se contenter de modifier ``alter``. Voici une note avec un bémol.
 
-*The <alter> element represents chromatic alteration in number of semitones (e.g., -1 for flat, 1 for sharp).*
+```xml
+pitch>
+<step>B</step>
+<alter>-1</alter>
+<octave>2</octave>
+</pitch>
+```
+Voici un élément avec 2 dièses. 
 
-Donc les valeurs que tu autorises pour « alter » c’est (-2, -1, 0, 1, 2).  Tu supprimes l’élément « accidental » quand tu fais la modification et Verovio devrait être capable de se débrouiller.
+```xml
+pitch>
+<step>G</step>
+<alter>2</alter>
+<octave>4</octave>
+</pitch>
+```
+
+L'interface doit se positionner par défaut en tenant compte de la valeur courante de ``alter``
+(donc on montre un dièse si ``alter``  vaut 1). Ensuite on peut incrémenter de 1 ou -1, mais
+en restant toujours dans la liste [-2, -1, 0, 1, 2].  On conserve la valeur validée par l'utilisateur 
+pour la transmettre au service d'édition.
 
 ### Modification de la hauteur
 
@@ -215,6 +233,39 @@ nombre de déplacements.
    }
 ```
 
+### Codage des changements d'altération
+
+Même principe que pour le changement de hauteur: On insère dans l'édition un attribut ``alter`` 
+qui indique le nombre de dièses ou de bémols
+de la note modifiée (soit la valeur de l'élément ``alter``  de MusicXML). C'est toujours un
+entier appartenant à [-2, -1, 0, 1, 2];
+
+**Exemples**:
+
+ La note n'a ni dièse ni bémol
+ 
+```json
+   {
+     "alter": 0
+   }
+```
+
+La note a deux dièses
+
+```json
+   {
+     "alter": 2
+   }
+```
+
+La note a un bémol
+
+```json
+   {
+     "alter": -1
+   }
+```
+
 ## Codage de la durée
 
 Il faut s'abstraire du codage XML pour les annotations, car on travaille
@@ -222,30 +273,8 @@ directement sur la forme des notes. Le plus simple est d'envoyer la paire
 ``(divisions, duration)`` et je me débrouillerai avec ça. La valeur
 de ``duration`` est calculée comme indiquée ci-dessus. 
 `
-## Codages des annotations
+### Quelques exemples complets
 
-Chaque opération d'édition doit être codée en JSON avec les paramètres nécessaires. Voir le document https://github.com/collabscore/callico/blob/main/editions.md pour la liste des éditions. Dans 
-à peu près tous
-les cas (sauf les triolets) on indique un identifiant d'objet et les propriétés à modifier.
-
-### Codage des changements d'altération
-
-Quelques exemples de codage:
-
-Changement de la durée (en envoie une noire)
-
-```json
-   {
-      "divisions": 4, 
-     "duration": 4
-   }
-```
-
-Changement de la durée (en envoie une double-croche)
-
-```json
-   {
-      "divisions": 32, 
-     "duration": 8
-   }
-```
+Se référer au document 
+https://github.com/collabscore/callico/blob/main/editions.md et à la description
+du service ``update_music_element``.
