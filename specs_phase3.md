@@ -121,10 +121,9 @@ pour pouvoir la changer facilement). La figure ci-dessous montre la liste des va
 
 ![duree-musescore](https://github.com/user-attachments/assets/4eefdca6-de78-4450-9710-de055a63a8a2)
 
-On va coder cette séquence commme suit (par exemple, 'qc' indique une quadruple croche, 'tc' indique
-une triple croche, etc).
+On va coder cette séquence commme suit, correspondant à la codification MusicXML (https://www.w3.org/2021/06/musicxml40/musicxml-reference/data-types/note-type-value/).
 
-(qc, tc, dc, c,  n, b, r) 
+(64th, 32nd, 16th, eighth, quarter, half, whole)
 
 Quand on sélectionne une note, on doit positionner le curseur dans l'interface sur la durée
 actuelle de la note, prise comme valeur par défaut. On peut se déplacer ensuite vers
@@ -280,7 +279,7 @@ La note a un bémol
 ## Codage du changement de durée
 
 En cas de changement de durée on envoie les quatre paramètres: codage ``duration``
-de la durée (qc, tc, etc.),
+de la durée (``whole``, ``half``, ``quarter``, etc.),
 un booléen ``dotted``qui indique s'il faut pointer ou non (optionnel), un booléen 
 ``is_rest`` indiquant 
 si c'est un silence, et la valeur ``tuple`` de n-olisation
@@ -292,7 +291,7 @@ pour les triolets, quintolets, etc.
  
 ```json
    {
-     "duration": "b"
+     "duration": "half"
    }
 ```
 
@@ -300,7 +299,7 @@ pour les triolets, quintolets, etc.
  
 ```json
    {
-     "duration": "c",
+     "duration": "eighth",
      "dotted": True
    }
 ```
@@ -309,7 +308,7 @@ pour les triolets, quintolets, etc.
  
 ```json
    {
-     "duration": "n",
+     "duration": "quarter",
      "is_rest": True
    }
 ```
