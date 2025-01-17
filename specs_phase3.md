@@ -187,16 +187,16 @@ alors la durée de toutes les autres doit être modifiée également.
 
 Pour les silences, on ne peut modifier que la durée
 
-## Le codage des remplacements.
+# Le codage des remplacements.
 
-# Codage de la durée
+## Codage de la durée
 
 Il faut s'abstraire du codage XML pour les annotations, car on travaille
 directement sur la forme des notes. Le plus simple est d'envoyer la paire
 ``(divisions, duration)`` et je me débrouillerai avec ça. La valeur
 de ``duration`` est calculée comme indiquée ci-dessus. 
 `
-# Codages des annotations
+## Codages des annotations
 
 Chaque opération d'édition doit être codée en JSON avec les paramètres nécessaires. Voir le document https://github.com/collabscore/callico/blob/main/editions.md pour la liste des éditions. Dans 
 à peu près tous
