@@ -219,7 +219,7 @@ un recalcul immédiat de la partition. Comme d'habitude le JSON des éditions do
 être stocké dans l'annotation de Callico pour être ensuite intégré définitivement dans Neuma.
 
 Voici des exemples de codage. Il faut se référer au document https://github.com/collabscore/callico/blob/main/editions.md pour la liste des services. Tout
-ce qui suit correspond aux paramètres du service ``update_music_element``.
+ce qui suit correspond aux paramètres du service ``replace_music_element``.
 
 ### Codage des changements de hauteur
 
@@ -326,4 +326,4 @@ pour les triolets, quintolets, etc.
 
 Se référer au document 
 https://github.com/collabscore/callico/blob/main/editions.md et à la description
-du service ``update_music_element``.
+du service ``replace_music_element``.
