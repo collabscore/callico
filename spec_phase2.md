@@ -18,6 +18,17 @@ Voici un exemple de l'URL d'appel pour l'opus all:collabscore:saintsaens-ref:C00
 
 https://neuma.huma-num.fr/rest/collections/all:collabscore:saintsaens-ref:C006_0/_annotations/image-region/symbol-region/
 
+Certaines clés, armures ou métriques peuvent être marquées comme douteuses par le système OMR. Dans ce
+cas on trouve une annotation dans le modèle "omr-error". On peut interroger le service qui remonte ces annotations
+avec une requête de la forme suivante:
+
+https://neuma.huma-num.fr/rest/collections/all:collabscore:saintsaens-ref:C006_0/_annotations/omr-error/_all/
+
+Les erreurs sur les métriques sont de la forme "ts_", les erreurs sur les clefs sont de la forme "clef_" et 
+les erreurs sur les armures sont de la forme "ks_".
+
+On doit utiliser un code couleur spécifique sur les clés, armures ou métriques pour lesquelles une erreur a été remontée.
+
 ## Principe de l'interface
 
 On va s'interdire d'ajouter ou de supprimer un symbole. Le but en effet est de corriger (si besoin) le résultat de l'OMR, mais pas
