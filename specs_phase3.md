@@ -141,7 +141,7 @@ L'interface doit donc permettre de collecter les quatre paramètres suivants val
 par l'utilisateur.
 
    - le code de la durée choisie
-   - un booléen indiquant si la note est pointée
+   - un entier positif indiquant le nombre de points (pour l'instant ça ne peut être que 1)
    - un booléen indiquant si le symbole est ou non un silence (True: c'est un silence, False ou absent: c'est une note)
    - le facteur *n* de la *n*-olisation: 3 pour un triolet, 4 pour un quatroplet, etc.
 
@@ -280,7 +280,7 @@ La note a un bémol
 
 En cas de changement de durée on envoie les quatre paramètres: codage ``duration``
 de la durée (``whole``, ``half``, ``quarter``, etc.),
-un booléen ``dotted``qui indique s'il faut pointer ou non (optionnel), un booléen 
+un entier positifs ``dots``qui indique le nombre de points (optionnel), un booléen 
 ``is_rest`` indiquant 
 si c'est un silence, et la valeur ``tuple`` de n-olisation
 pour les triolets, quintolets, etc.
@@ -300,7 +300,7 @@ pour les triolets, quintolets, etc.
 ```json
    {
      "duration": "eighth",
-     "dotted": True
+     "dots": 1
    }
 ```
 
