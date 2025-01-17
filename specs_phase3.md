@@ -202,6 +202,30 @@ Chaque opération d'édition doit être codée en JSON avec les paramètres néc
 à peu près tous
 les cas (sauf les triolets) on indique un identifiant d'objet et les propriétés à modifier.
 
+### Codage des changements de hauteur
+
+On insère dans l'édition un attribut ``pitch_change`` avec un entier non nul indiquant le
+nombre de déplacements.
+
+**Exemples**:
+
+ On a déplacé  la note d'un cran vers le haut:
+```json
+   {
+     "pitch_change": 1
+   }
+```
+
+ On a déplacé  la note de deux crans vers le bas:
+ 
+```json
+   {
+     "pitch_change": -2
+   }
+```
+
+### Codage des changements d'altération
+
 Quelques exemples de codage:
 
 Changement de la durée (en envoie une noire)
@@ -221,23 +245,3 @@ Changement de la durée (en envoie une double-croche)
      "duration": 8
    }
 ```
-
-Changement de la hauteur. 
-
-```json
-   {
-     "pitch": "D6"
-   }
-```
-
-
-Changement de la durée (une croche), de la hauteur et ajout d'un dièse
-
-```json
-   {
-     "pitch": "D6",
-     "duration": "16",
-      "alter": 8
-   }
-```
-
