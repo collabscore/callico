@@ -288,6 +288,21 @@ A time signature identified by its id can be replaced. Example:
  }
 ```
 
+###  Update a music element
+
+A music element (note or rest) identified by its id can be replaced. Example:
+
+```json
+{
+	"name": "update_music_element",
+         "target": "nh_1929_1092",
+         "params": {
+                "time": 3,
+                "unit": 4
+	}
+ }
+```
+
 Les valeurs autorisées pour le numérateur sont tous les entiers positifs.
 Les valeurs autorisées pour le dénominateur sont les puissances de 2: 1, 2, 4, 8, 16, 32. Et ça suffit.
 
