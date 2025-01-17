@@ -138,18 +138,17 @@ Il faut y ajouter des options:
   - on peut transformer une note en silence ou un silence en note ; un case à cocher "silence" peut faire l'affaire
   - Enfin on peut indiquer qu'une note ou un silence  est le début d'un n-olet (triolet, etc.)
 
-L'interface doit donc permettre de collecter les trois paramètres suivants validés
+L'interface doit donc permettre de collecter les quatre paramètres suivants validés
 par l'utilisateur.
 
    - le code de la durée choisie
-   - un booléen indiquand si le symbole est ou non un silence (True: c'est un silence, False ou absent: c'est une note)
+   - un booléen indiquant si la note est pointée
+   - un booléen indiquant si le symbole est ou non un silence (True: c'est un silence, False ou absent: c'est une note)
    - le facteur *n* de la *n*-olisation: 3 pour un triolet, 4 pour un quatroplet, etc.
 
 Ces trois paramètres sont à transmettre au service d'édition.
 
 **Comment modifier le MusicXML**.  
-
-
 
 Il y a un attribut global *divisions* dans le document XML qui indique le nombre maximal de divisions possibles pour une *noire*. Donc, une valeur de 1 indique qu'on ne peut pas décomposer la noire, une valeur de 4 qu'on ne peut pas la décomposer au-delà des doubles-croches, etc. Cet attribut *divisions* se trouve en début de mesure (exemple ci-dessous). S'il n'est pas présent, c'est le dernier recontré qui fait foi (oui, c'est chiant).
 
@@ -278,13 +277,52 @@ La note a un bémol
    }
 ```
 
-## Codage de la durée
+## Codage du changement de durée
 
-Il faut s'abstraire du codage XML pour les annotations, car on travaille
-directement sur la forme des notes. Le plus simple est d'envoyer la paire
-``(divisions, duration)`` et je me débrouillerai avec ça. La valeur
-de ``duration`` est calculée comme indiquée ci-dessus. 
-`
+En cas de changement de durée on envoie les quatre paramètres: codage ``duration``
+de la durée (qc, tc, etc.),
+un booléen ``dotted``qui indique s'il faut pointer ou non (optionnel), un booléen 
+``is_rest`` indiquant 
+si c'est un silence, et la valeur ``tuple`` de n-olisation
+pour les triolets, quintolets, etc.
+
+**Exemples**:
+
+ La note est une blanche:
+ 
+```json
+   {
+     "duration": "b"
+   }
+```
+
+ La note est une croche pointée:
+ 
+```json
+   {
+     "duration": "c",
+     "dotted": True
+   }
+```
+
+ Un silence dont la durée est une noire
+ 
+```json
+   {
+     "duration": "n",
+     "is_rest": True
+   }
+```
+
+ Une note qui est la première que triolet de trois noires.
+ 
+```json
+   {
+     "duration": "n",
+     "tuple": 3
+   }
+```
+
 ### Quelques exemples complets
 
 Se référer au document 
