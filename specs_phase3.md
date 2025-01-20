@@ -137,12 +137,11 @@ Il faut y ajouter des options:
   - on peut transformer une note en silence ou un silence en note ; un case à cocher "silence" peut faire l'affaire
   - Enfin on peut indiquer qu'une note ou un silence  est le début d'un n-olet (triolet, etc.)
 
-L'interface doit donc permettre de collecter les quatre paramètres suivants validés
+L'interface doit donc permettre de collecter les trois paramètres suivants validés
 par l'utilisateur.
 
    - le code de la durée choisie
    - un entier positif indiquant le nombre de points (pour l'instant ça ne peut être que 1)
-   - un booléen indiquant si le symbole est ou non un silence (True: c'est un silence, False ou absent: c'est une note)
    - le facteur *n* de la *n*-olisation: 3 pour un triolet, 4 pour un quatroplet, etc.
 
 Ces trois paramètres sont à transmettre au service d'édition.
