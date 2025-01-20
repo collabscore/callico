@@ -280,9 +280,7 @@ La note a un bémol
 
 En cas de changement de durée on envoie les quatre paramètres: codage ``duration``
 de la durée (``whole``, ``half``, ``quarter``, etc.),
-un entier positifs ``dots``qui indique le nombre de points (optionnel), un booléen 
-``is_rest`` indiquant 
-si c'est un silence, et la valeur ``tuple`` de n-olisation
+un entier positifs ``dots``qui indique le nombre de points (optionnel) et la valeur ``tuple`` de n-olisation
 pour les triolets, quintolets, etc.
 
 **Exemples**:
@@ -304,14 +302,6 @@ pour les triolets, quintolets, etc.
    }
 ```
 
- Un silence dont la durée est une noire
- 
-```json
-   {
-     "duration": "quarter",
-     "is_rest": True
-   }
-```
 
  Une note qui est la première que triolet de trois noires.
  
@@ -319,6 +309,23 @@ pour les triolets, quintolets, etc.
    {
      "duration": "n",
      "tuple": 3
+   }
+```
+
+
+## Codage du changement silence <-> note
+
+Si une note doit être transformée en silence ou l'inverse, il faut
+transmettre un booléen 
+``is_rest``. Il est transmis à ``True``si on transforme de note à silence, et à ``False``
+si on transforme de silence à note. S'il n'y a pas de changement, on n'envoie pas
+ce paramètre.
+
+Exemple: on transforme la note ciblée en silence.
+
+```json
+   {
+     "is_rest": True
    }
 ```
 
