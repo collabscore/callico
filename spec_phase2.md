@@ -141,7 +141,7 @@ Pour une clé octaviante vers le haut
    {
      "label": "G",
      "line": 2
-      "octave": 1
+      "octave_change": 1
    }
 ```
 Pour une clé octaviante vers le bas
@@ -150,7 +150,7 @@ Pour une clé octaviante vers le bas
    {
      "label": "G",
      "line": 2
-      "octave": -1
+      "octave_change": -1
    }
 ```
 
