@@ -98,7 +98,7 @@ On va limiter (au moins dans un premier temps) la liste des valeurs possibles po
      - clé d'ut 2ème: clef shape="C" line="2" 
      - clé d'ut 1ère ligne:  clef shape="C" line="1" 
      - clé de sol 2ème ligne. En MEI:   clef shape="G" line="2" 
-     - clés de sol octaviées (haut et bas) : clef shape="G" line="2", octave=1 ou -1
+     - clés de sol octaviées (haut et bas) : clef shape="G" line="2", "octave_change"=1 ou -1
 
 
  - les armures : de 0 à 7 dièses, de 0 à 7 bémols.
