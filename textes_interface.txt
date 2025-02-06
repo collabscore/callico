@@ -1,6 +1,6 @@
 # Texte phase 2
 
-## Instructions
+## Instructions phase 2
 
 Dans cette phase, nous vérifions les clefs, les armures et la métrique. Vous devez contrôler la correspondance entre l'image et la partition pour chacun de ces éléments, en ne considérant que ce qui est surligné. 
 
@@ -9,6 +9,10 @@ Tous les éléments surlignés peuvent être **édités** en cliquant sur leur r
 Les éléments en rouge sont considérés comme suspects et doivent être édités et validés avec "OK" ; les éléments en jaune sont en principe corrects. Vous pouvez les contrôler visuellement et les éditer seulement si c'est nécessaire.
 
 Le système recalcule la transcription au fur et à mesure des corrections. Validez chaque page après correction, jusqu’à la dernière: tous les éléments rouges doivent normalement être alors passés au vert.
+
+## Instructions phase 3
+
+En phase 3 nous considérons les objets musicaux suivants: notes, silences et accords. Comme dans la phase 2, les éléments en rouge sont considérés comme suspects et doivent être édités et validés avec "OK". Les autres éléments peuvent être édités si vous constatez une erreur, même s'ils ne sont pas surlignés. L'édition consiste à apporter des corrections à la durée (notes et silences), à la hauteur ou aux altérations (notes). Vous pouvez également transformer une note en silence et réciproquement, et supprimer un élément. N'oubliez pas de valider vos corrections avec "OK".
 
 ## Explications détaillées
 
