@@ -2,8 +2,11 @@
 
 ## Instructions
 
-Dans cette phase, nous vérifions les clefs, les armures et la métrique. Vous devez contrôler la correspondance entre l'image et la partition pour chacun de ces éléments, en ne considérant que ce qui est surligné en rouge.
-Vérifiez tout d’abord la mesure initiale puis tous les éléments surlignés qui suivent. Corrigez si nécessaire et confirmez avec "OK": le système recalcule alors la transcription. Validez chaque page après correction, jusqu’à la dernière.
+Dans cette phase, nous vérifions les clefs, les armures et la métrique. Vous devez contrôler la correspondance entre l'image et la partition pour chacun de ces éléments, en ne considérant que ce qui est surligné. Les éléments en rouge sont considérés comme suspects, les éléments en jaune sont en principe corrects et doivent simplement être vérifiés.
+
+Tous les éléments surlignés peuvent être **édités** en cliquant sur leur représentation sur la partition à droite. Une interface vous permet de corriger l'élément si nécessaire, puis de valider la correction avec "OK". Tous les éléments validés deviennent verts. 
+
+Le système recalcule la transcription au fur et à mesure des corrections. Validez chaque page après correction, jusqu’à la dernière. 
 
 ## Explications détaillées
 
