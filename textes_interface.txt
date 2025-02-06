@@ -2,11 +2,16 @@
 
 ## Instructions
 
-Dans cette phase, nous vérifions les clefs, les armures et la métrique. Vous devez contrôler la correspondance entre l'image et la partition pour chacun de ces éléments, en ne considérant que ce qui est surligné. Les éléments en rouge sont considérés comme suspects, les éléments en jaune sont en principe corrects et doivent simplement être vérifiés.
+Dans cette phase, nous vérifions les clefs, les armures et la métrique. Vous devez contrôler la correspondance entre l'image et la partition pour chacun de ces éléments, en ne considérant que ce qui est surligné. 
 
-Tous les éléments surlignés peuvent être **édités** en cliquant sur leur représentation sur la partition à droite. Une interface vous permet de corriger l'élément si nécessaire, puis de valider la correction avec "OK". Tous les éléments validés deviennent verts. 
+Tous les éléments surlignés peuvent être **édités** en cliquant sur leur représentation sur la partition à droite. Une interface vous permet de corriger l'élément si nécessaire, puis de valider la correction avec "OK". Tous les éléments validés après correction deviennent verts. 
 
-Le système recalcule la transcription au fur et à mesure des corrections. Validez chaque page après correction, jusqu’à la dernière. 
+Les éléments en rouge sont considérés comme suspects et doivent être édités et validés avec "OK" ; les éléments en jaune sont en principe corrects. Vous pouvez les contrôler visuellement et les éditer seulement si c'est nécessaire.
+
+Le système recalcule la transcription au fur et à mesure des corrections. Validez chaque page après correction, jusqu’à la dernière: tous les éléments rouges doivent normalement être alors passés au vert.
 
 ## Explications détaillées
 
+Les clefs, armures et métriques constituent le contexte de lecture et d'interprétation des objets musicaux (notes, silences et accords). Il sont initialisés sur la première mesure, et peuvent changer en cours de partition. Il faut distinguer les changements des rappels ou annonces. Le contexte de lecture, même s'il ne change pas, est le plus souvent rappelé en début de système, ou annoncé en fin de système.
+
+Si un élément du contexte a été incorrectement reconnu, vous pouvez le changer en cliquant sur sa représentation dans la partition à droite. Choisissez le bon symbole et cliquez sur 'Ok': la partition est recalculée en tenant compte de votre correction. Quand tous les éléments de contexte de la page en cours sont corrigés et passés en vert, validez cette page et passer à la suivante. Quand toutes les pages de la partition sont validées, la tâche est terminée, vous pouvez la valider.
