@@ -1,0 +1,9 @@
+# Texte phase 2
+
+## Instructions
+
+Dans cette phase, nous vérifions les clefs, les armures et la métrique. Vous devez contrôler la correspondance entre l'image et la partition pour chacun de ces éléments, en ne considérant que ce qui est surligné en rouge.
+Vérifiez tout d’abord la mesure initiale puis tous les éléments surlignés qui suivent. Corrigez si nécessaire et confirmez avec "OK": le système recalcule alors la transcription. Validez chaque page après correction, jusqu’à la dernière.
+
+## Explications détaillées
+
