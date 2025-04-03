@@ -291,7 +291,6 @@ A time signature identified by its id can be replaced. Example:
 Les valeurs autorisées pour le numérateur sont tous les entiers positifs.
 Les valeurs autorisées pour le dénominateur sont les puissances de 2: 1, 2, 4, 8, 16, 32. Et ça suffit.
 
-
 ###  Replace a music element
 
 A music element (note or rest) identified by its id can be updated. The values 
@@ -346,6 +345,20 @@ The duration is  a dotted eighth, and alteration is set to one sharp.
                "duration": "eighth",
                "dots": 1,
                 "alter": 1
+	}
+ }
+```
+
+###  Comment a music element
+
+Send a message to associate a comment to a music element
+
+```json
+{
+	"name": "comment_element",
+         "target": "ks_1929_1092",
+         "params": {
+                 "comment": "This is text of the comment, properly encoded for JSON"
 	}
  }
 ```
