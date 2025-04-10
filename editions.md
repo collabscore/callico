@@ -349,6 +349,18 @@ The duration is  a dotted eighth, and alteration is set to one sharp.
  }
 ```
 
+The note (or rest, or chord) is assigned to the second voice:
+
+```json
+{
+	"name": "replace_music_element",
+         "target": "nh_1929_1092",
+         "params": {
+               "voice": 2
+	}
+ }
+```
+
 ###  Comment a music element
 
 Send a message to associate a comment to a music element
