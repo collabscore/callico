@@ -38,6 +38,7 @@ L'interface doit permettre de collecter un ensemble d'éditions qui seront appli
   - édition d'une note ou d'un accord
   - édition d'un silence
   - suppression d'un objet
+  - changement de voix
 
 Par application des éditions au résultat "brut" de l'OMR avec le service ``apply_editions``, 
 on obtient une partition corrigée des erreurs de l'OMR. **Mais** il est très facile également d'effectuer directement la modification sur le document Verovio puisque l'impact de la modification n'est que local, contrairement au cas des clés, armures et métriques.
@@ -210,6 +211,21 @@ alors la durée de toutes les autres doit être modifiée également.
 ### Le cas des silences
 
 Pour les silences, on ne peut modifier que la durée
+
+## Modification de la voix
+
+La voix est simplement indiquée par un élément ``voice`` dans le XML. Par exemple:
+
+```xml
+<pitch>
+<step>D</step>
+<octave>5</octave>
+</pitch>
+<voice>1</voice>
+<duration>7560</duration>
+</note>
+```
+Il suffit donc de changer le numéro de la voix: 1, 2, 3, etc.
 
 # L'appel au service d'édition
 
